@@ -6,7 +6,7 @@ const AboutUs = ({ reverse }: { reverse?: string }) => {
   return (
     <div
       className={`flex flex-col md:flex-row md:items-center relative my-5 ${
-        reverse && "flex-row-reverse"
+        reverse && "md:flex-row-reverse"
       }`}
     >
       <Image

@@ -5,7 +5,7 @@ const Hero = () => {
     <div className="bg-hero-pattern w-full bg-fill bg-cover relative bg-center">
       <div className="bg-black bg-opacity-30 w-full">
         <div className="py-20 px-5 md:py-40 md:pl-32">
-          <div className="p-8 md:p-16 flex flex-col md:w-1/5 bg-black bg-opacity-60">
+          <div className="p-8 md:p-16 flex flex-col md:w-2/5 bg-black bg-opacity-60">
             <h1 className="font-bold text-lg md:text-4xl mb-2 md:mb-5">
               Preparing young people with skills for life
             </h1>
