@@ -1,0 +1,71 @@
+import Link from "next/link";
+import { AiFillHome, AiFillFund } from "react-icons/ai";
+import { FaPeopleGroup, FaPersonDigging } from "react-icons/fa6";
+import { TbReportSearch } from "react-icons/tb";
+import { BiSolidMessageSquare } from "react-icons/bi";
+import { CgWebsite } from "react-icons/cg";
+import { GrGallery } from "react-icons/gr";
+const DashboardLayout = () => {
+  return (
+    <div className="flex flex-col w-1/5">
+      <Link
+        href="/dashboard"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <AiFillHome />
+        <span>Dashboard</span>
+      </Link>
+      <Link
+        href="#"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <FaPeopleGroup />
+        <span>Members</span>
+      </Link>
+      <Link
+        href="#"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <FaPersonDigging />
+        <span>Activities</span>
+      </Link>
+      <Link
+        href="#"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <TbReportSearch />
+        <span>Reports</span>
+      </Link>
+      <Link
+        href="#"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <AiFillFund />
+        <span>Funding</span>
+      </Link>
+      <Link
+        href="#"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <BiSolidMessageSquare />
+        <span>Messages</span>
+      </Link>
+      <Link
+        href="#"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <CgWebsite />
+        <span>Website</span>
+      </Link>
+      <Link
+        href="#"
+        className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
+      >
+        <GrGallery />
+        <span>Gallery</span>
+      </Link>
+    </div>
+  );
+};
+
+export default DashboardLayout;
