@@ -7,7 +7,7 @@ import { CgWebsite } from "react-icons/cg";
 import { GrGallery } from "react-icons/gr";
 const DashboardLayout = () => {
   return (
-    <div className="flex flex-col w-1/5">
+    <div className="flex flex-col w-1/5 bg-indigo-400">
       <Link
         href="/dashboard"
         className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
@@ -16,35 +16,35 @@ const DashboardLayout = () => {
         <span>Dashboard</span>
       </Link>
       <Link
-        href="#"
+        href="/members"
         className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
       >
         <FaPeopleGroup />
         <span>Members</span>
       </Link>
       <Link
-        href="#"
+        href="/activity"
         className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
       >
         <FaPersonDigging />
         <span>Activities</span>
       </Link>
       <Link
-        href="#"
+        href="/reports"
         className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
       >
         <TbReportSearch />
         <span>Reports</span>
       </Link>
       <Link
-        href="#"
+        href="/donation"
         className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
       >
         <AiFillFund />
         <span>Funding</span>
       </Link>
       <Link
-        href="#"
+        href="/messages"
         className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
       >
         <BiSolidMessageSquare />
