@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Member{
+    id Int @id @default(autoincrement())
+  email String
+  First_name String
+  last_name String
+  member_id String @default(uuid())
+  contact String
+  category String
+  hasCard Boolean
+  joined_at DateTime
+  unit_name String
+  district String
+  address String
+  role String
+  occupation String
+  payment Payment[]
+  activities Activity[]
+
+}
+model Activity {
+  id Int @id @default(autoincrement())
+  name String
+  date DateTime 
+  venue String
+  description String
+  image String
+  organizer String
+  created_at DateTime
+  members Member[]
+  admin_id Int @unique
+  admin Admin @relation(fields: [admin_id], references: [id])
+}
+
+model Payment {
+  id Int @id @default(autoincrement())
+  amount String
+  payer_names String
+  date DateTime
+  reason DateTime
+  member_id Int @unique
+  member Member @relation(fields: [member_id], references: [id])
+}
+
+model Announcements {
+id Int @id @default(autoincrement())
+title String
+communique String
+created_at DateTime
+status String
+Author String
+admin_id Int @unique
+admin Admin @relation(fields: [admin_id], references: [id])
+}
+
+model Report {
+  id Int @id @default(autoincrement())
+  author String
+  created_at  DateTime
+  type String
+  content String
+  status String
+  admin_id Int @unique
+  admin Admin @relation(fields: [admin_id], references: [id])
+}
+
+model Admin {
+  id Int @id @default(autoincrement())
+  username String
+  first_name String
+  last_name String
+  contact String
+  email String
+  role String
+  unit String
+  district String
+  created_at DateTime
+  reports Report[]
+  activity Activity[]
+  donation Donation[]
+  announcements Announcements[]
+}
+model Donation{
+  id Int @id @default(autoincrement())
+  about String
+  target String
+  created_at DateTime
+  admin_id Int @unique
+  admin Admin @relation(fields: [admin_id], references: [id])
+}
