@@ -1,6 +1,7 @@
 import logo from "@/public/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 const DashboardNavbar = () => {
   return (
     <div className="flex justify-between p-5 items-center bg-purple-900">
@@ -8,7 +9,9 @@ const DashboardNavbar = () => {
         <Image src={logo} width={32} height={32} alt="logo" />
         <p>Rwanda scouts association</p>
       </Link>
-      <div>profile</div>
+      <div>
+        <UserButton afterSignOutUrl="/" />
+      </div>
     </div>
   );
 };

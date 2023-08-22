@@ -15,7 +15,7 @@ const SignUpPage = () => {
             Create new Admin Account
           </h2>
         </div>
-        <SignUp afterSignUpUrl="/dashboard" />
+        <SignUp />
       </div>
     </div>
   );

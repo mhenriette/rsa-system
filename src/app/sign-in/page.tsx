@@ -11,7 +11,7 @@ const page = () => {
             RWANDA SCOUTS ASSOCIATION
           </h1>
         </div>
-        <SignIn />
+        <SignIn afterSignInUrl="/dashboard" redirectUrl="/dashboard" />
       </div>
     </div>
   );
