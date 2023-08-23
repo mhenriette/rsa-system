@@ -1,10 +1,14 @@
+"use client";
 import { addNewUser } from "@/lib/actions";
+import { ReactElement } from "react";
+import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
-const page = () => {
+const page = (): ReactElement => {
+  const { pending } = useFormStatus();
   return (
-    <div>
-      <h1>Add a Member</h1>
-      <form action={addNewUser}>
+    <div className="p-3">
+      <h1 className="text-green-500 font-medium text-3xl">Add a Member</h1>
+      <form action={addNewUser} className="flex flex-col gap-5">
         <input name="email" placeholder="email" />
         <input name="First_name" placeholder="First_name" />
         <input name="last_name" placeholder="last_name" />
@@ -16,7 +20,15 @@ const page = () => {
         <input name="district" placeholder="district" />
         <input name="address" placeholder="address" />
         <input name="role" placeholder="role" />
-        <button type="submit">Save User</button>
+        <input name="contact" placeholder="contact" />
+        <input name="occupation" placeholder="occupation" />
+        <button
+          disabled={pending}
+          type="submit"
+          className="bg-purple-800 p-3 font-medium text-white"
+        >
+          {pending ? "Saving user..." : "Save User"}
+        </button>
       </form>
     </div>
   );

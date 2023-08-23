@@ -6,8 +6,8 @@ import { prisma } from "@/lib/db";
 
 const DashboardPage = async () => {
   // const { isSignedIn, isLoaded, user } = useUser();
-  const allUsers = await prisma.member.findMany();
-  console.log(allUsers, "all userss");
+  // const allUsers = await prisma.member.findMany();
+  // console.log(allUsers, "all userss");
 
   return (
     <div className="p-5">
