@@ -1,19 +1,5 @@
 "use server";
 import { prisma } from "./db";
-
-// interface Data {
-//     email: String,
-//     First_name: String,
-//     last_name: String,
-//     member_id:  String,
-//     category:  String,
-//     hasCard: boolean,
-//     joined_at: String,
-//     unit_name:  String,
-//     district: String,
-//     address: String,
-//     role:  String
-// }
 const date = new Date()
 export const addNewUser = async (formData: any) => {
   const user = await prisma.member.create({

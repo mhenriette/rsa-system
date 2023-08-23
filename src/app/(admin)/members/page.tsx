@@ -35,20 +35,3 @@ const page = (): ReactElement => {
 };
 
 export default page;
-
-// id Int @id @default(autoincrement())
-// email String
-// First_name String
-// last_name String
-// member_id String @default(uuid())
-// contact String
-// category String
-// hasCard Boolean
-// joined_at DateTime
-// unit_name String
-// district String
-// address String
-// role String
-// occupation String
-// payment Payment[]
-// activities Activity[]
