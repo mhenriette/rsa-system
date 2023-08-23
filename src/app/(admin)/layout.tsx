@@ -2,7 +2,6 @@ import DashboardLayout from "@/components/cards/DashboardLayout";
 import DashboardNavbar from "@/components/navbar/DashboardNavbar";
 import { ReactElement } from "react";
 
-
 const layout = ({ children }: { children: ReactElement }) => {
   return (
 
