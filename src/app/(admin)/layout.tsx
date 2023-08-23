@@ -1,6 +1,7 @@
 import DashboardLayout from "@/components/cards/DashboardLayout";
 import DashboardNavbar from "@/components/navbar/DashboardNavbar";
-import { ClerkProvider } from "@clerk/nextjs";import { ReactElement } from "react";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ReactElement } from "react";
 
 const layout = ({ children }: { children: ReactElement }) => {
   return (
