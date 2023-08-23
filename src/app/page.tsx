@@ -6,12 +6,10 @@ import Wrapper from "@components/wrapper/wrapper";
 export default function Home() {
   return (
     <main className="text-white">
-      {/* <Wrapper> */}
       <Navbar />
       <Hero />
       <About />
       <Footer />
-      {/* </Wrapper> */}
     </main>
   );
 }
