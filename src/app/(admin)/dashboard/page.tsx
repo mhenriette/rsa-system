@@ -1,6 +1,4 @@
-"use client";
 import Members from "@/components/ui/Members";
-
 const DashboardPage = () => {
   return (
     <div className="p-5">
