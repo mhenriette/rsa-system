@@ -42,21 +42,3 @@ export const getUsers = async ()=>{
   return [...users]
 }
 
-// export const getMembershipCard =async (formData: any) => {
-//   // const router = useRouter();
-//   const member = await prisma.member.findUnique({
-//     where:{
-//     id:Number(formData.get('member_id'))
-//     }
-//   })
-//   if(member) redirect()
-//   notFound()
-
-
-  // }
-  // router.push("/")
-  // return {Message:"User not Found"}
-  
-  
-  
-}
