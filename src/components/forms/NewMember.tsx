@@ -1,7 +1,7 @@
 "use client";
 import InputField from "@/components/ui/Input";
 import { districts } from "@/data/districts";
-import { addNewUser } from "@/lib/actions";
+import { AddNewMember } from "@/lib/actions";
 import { ReactElement } from "react";
 import SelectField from "../ui/SelectField";
 
@@ -13,7 +13,7 @@ const page = (): ReactElement => {
         <button className="flex text-red-500 text-lg underline mt-8 text-right">Clear</button>
       </div>
       <form
-        action={addNewUser}
+        action={AddNewMember}
         className="grid md:grid-cols-2 grid-cols-1 md:gap-x-28 gap-y-4 w-full mt-8"
       >
         <InputField placeholder="Picture" label="Profile picture" name="" />

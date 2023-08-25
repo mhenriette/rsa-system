@@ -1,14 +1,14 @@
 "use server";
+import { redirect } from "next/navigation";
 import { prisma } from "./db";
+
 const date = new Date();
-export const addNewUser = async (formData: any) => {
-  console.log("yello there", formData);
+export const AddNewMember = async (formData: any) => {
   const user = await prisma.member.create({
     data: {
       email: formData.get("email"),
       First_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
-      member_id: formData.get("member_id"),
       category: formData.get("category"),
       hasCard: true,
       joined_at: date,
@@ -24,4 +24,5 @@ export const addNewUser = async (formData: any) => {
       activities: true,
     },
   });
+  redirect("/members");
 };

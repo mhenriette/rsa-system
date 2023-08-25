@@ -7,11 +7,13 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
-  ({ label, placeholder, options, className, name, ...props }) => {
+  ({ label, placeholder, options, className, required, name, ...props }, ref) => {
     return (
       <div className="w-full">
         <label className="label" htmlFor={name}>
-          {label}
+          <span className="label-text">
+            {label} {required && <small className="text-red-500 text-sm">*</small>}
+          </span>
         </label>
         <select
           name={name}
@@ -19,6 +21,8 @@ const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
           defaultValue=""
           {...props}
           className="border-[#C9C9C9] rounded mt-1 border px-5 py-2 w-full"
+          ref={ref}
+          required={required}
         >
           {placeholder && (
             <option value="" disabled>
