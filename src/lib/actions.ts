@@ -25,6 +25,14 @@ export const addNewUser = async (formData: any) => {
   });
 };
 
+
+ 
+ 
+export const getMembers = async () => {
+  const item = await prisma.member.findMany()
+  return [...item]
+}
+
 export const addApplicant = async (formData: any) => {
   const applicant = await prisma.applicants.create({
     data: {

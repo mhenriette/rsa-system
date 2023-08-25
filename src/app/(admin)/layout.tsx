@@ -5,11 +5,11 @@ import { ReactElement } from "react";
 const layout = ({ children }: { children: ReactElement }) => {
   return (
 
-      <main>
+      <main className="bg-[#e3e0e0] h-screen">
         <DashboardNavbar />
         <div className="flex">
           <DashboardLayout />
-          <div>{children}</div>
+          <div className="w-full">{children}</div>
         </div>
       </main>
 
