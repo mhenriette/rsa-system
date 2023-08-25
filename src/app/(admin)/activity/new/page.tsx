@@ -1,7 +1,7 @@
 "use client";
 import InputField from "@/components/ui/Input";
 import { districts } from "@/data/districts";
-import { addNewUser } from "@/lib/actions";
+import { addNewActivity } from "@/lib/actions";
 import { ReactElement } from "react";
 import SelectField from "@/components/ui/SelectField";
 
@@ -15,30 +15,26 @@ const page = (): ReactElement => {
         <button className="flex text-red-500 text-lg underline mt-8 text-right">Clear</button>
       </div>
       <form
-        action={addNewUser}
+        action={addNewActivity}
          className="grid md:grid-cols-2 grid-cols-1 md:gap-x-28 gap-y-4 w-full mt-8"
       >
        
-        <InputField placeholder="Event name" label="Event name" name="event_name" />
-        <SelectField placeholder="choose organizer" label="Organizer" name="gender"  options={districts}/>
-       
-        <InputField placeholder="Enter participation link" label="Participation link" name="participation_link" />
-        <SelectField
-          placeholder="Enter district"
-          label="District"
-          name="district"
-          options={districts}
-        />
-        <InputField placeholder="Location" label="Location" name="location" />
-        <SelectField placeholder="capacity" label="maximum capacity" name="maximum_capacity" options={districts} />
+        <InputField placeholder="Name" label="Name" name="name" />
         <InputField placeholder="Date" label="Date" type="date" name="date" />
-        <InputField placeholder="Time" label="Time" type="time" name="time" step="900" />
-        
-       
-      
-        
-        
 
+        <InputField placeholder="Venue" label="Venue" name="venue" />
+       
+        <InputField placeholder="Description" label="description" name="description" />
+        {/* <InputField
+          placeholder="Image"
+          label="Image"
+          name="Image"
+        
+        /> */}
+            <SelectField placeholder="Organizer" label="Organizer" name="organizer" options={districts} />
+        <InputField placeholder="Location" label="Location" name="location" />
+         
+      
         <div className="col-span-2 flex justify-center mt-16">
           <button
             type="submit"
