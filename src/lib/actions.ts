@@ -24,3 +24,24 @@ export const addNewUser = async (formData: any) => {
     },
   });
 };
+
+
+export const addNewActivity = async (formData: any) => {
+  const activity = await prisma.activity.create({
+    data: {
+      name: formData.get("name"),
+      date: formData.get("date"),
+      venue: formData.get("venue"),
+      description: formData.get("description"),
+      image: formData.get("image"),
+      organizer: formData.get("organizer"),
+      created_at: formData.get("created_at"),
+  
+      admin_id: formData.get("admin_id"),
+    
+    },
+    include: {
+      members: true,
+    },
+  });
+};

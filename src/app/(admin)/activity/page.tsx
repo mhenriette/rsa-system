@@ -1,8 +1,10 @@
 import React from "react";
 import ActivityCard from "@/components/cards/ActivityCard"
+import Link from "next/link";
 
 function page() {
-  return <div className="bg-[#E3E1E1] max-w-7xl mx-auto px-10 py-4"> 
+
+  return  <div className="bg-[#E3E1E1] max-w-7xl mx-auto px-10 py-4"> 
 
 <div className="flex justify-between p-5">
 <div className="flex items-center gap-2 text-lg font-normal">
@@ -10,10 +12,8 @@ function page() {
     <input className="w-14 h-8 p-1" type="number" />
     <span>Entries</span>
   </div>
-  <button className="text-white text-lg font-semibold bg-[#36043A] p-2 rounded-full">+ Add activity</button>
+  <Link href="/activity/new" className="text-white text-lg p-2 rounded-full bg-violet-900 px-10 py-3 font-medium text-center hover:bg-violet-600">+ Add activity</Link>
 </div>
- 
-    
     <div className="bg-white">
       <div className="flex border-b solid border-b-[#1B1A1A] px-16 pt-4 pb-5">
         <span>Date</span>
@@ -31,9 +31,9 @@ function page() {
     <ActivityCard />
     </div>
     </div>
-   
-    
-    </div>;
+    </div>
+ 
+
 }
 
 export default page;
