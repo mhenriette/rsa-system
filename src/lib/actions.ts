@@ -1,11 +1,12 @@
 "use server";
 import { prisma } from "./db";
-const date = new Date()
+const date = new Date();
 export const addNewUser = async (formData: any) => {
+  console.log("yello there", formData);
   const user = await prisma.member.create({
     data: {
       email: formData.get("email"),
-      First_name: formData.get("First_name"),
+      First_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
       member_id: formData.get("member_id"),
       category: formData.get("category"),
@@ -16,7 +17,7 @@ export const addNewUser = async (formData: any) => {
       address: formData.get("address"),
       role: formData.get("role"),
       contact: formData.get("contact"),
-      occupation: formData.get("occupation")
+      occupation: formData.get("occupation"),
     },
     include: {
       payment: true,
