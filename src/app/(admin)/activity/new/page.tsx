@@ -10,7 +10,7 @@ import Link from "next/link";
 
 
 
-const page = (): ReactElement => {
+const Page = (): ReactElement => {
   const { register, reset } = useForm();
   return (
     <div className="p-3 w-full px-28 py-16">
@@ -52,4 +52,4 @@ const page = (): ReactElement => {
   );
 };
 
-export default page;
+export default Page;
