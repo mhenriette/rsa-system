@@ -26,27 +26,6 @@ export const AddNewMember = async (formData: any) => {
   redirect("/members");
 };
 
-
-export const addNewReport = async (formData: any) => {
-  const adminId = 1; 
-  
-  const user = await prisma.report.create({
-    data: {
-      author: formData.get("author"),
-      content: formData.get("content"),
-      type: formData.get("type"),
-      created_at: new Date(),
-      status: "pending",
-      admin: {
-        connect: {
-          id: adminId,
-        },
-      },
-    },
-  });
-  redirect("/reports")
-};
-
 export const addNewReport = async (formData: any) => {
   const adminId = 1; 
   
