@@ -1,19 +1,23 @@
 import Image from "next/image";
 import React from "react";
 import activityImg from "../../../public/activity.png";
+import { getActivities } from "@/lib/actions";
 
-const AboutUs = () => {
+const AboutUs = async () => {
+  const activities = await getActivities()
+  console.log(activities);
+  
   return (
     <div className="bg-[#EAEAEA] shadow-activity-shadow border-solid border">
-      <div className="flex justify-end pr-5 pt-8">
+      <div className="flex justify-end pr-5 md:pt-8 py-2 ">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23" fill="none">
        <path d="M12.4987 14.0301C12.86 14.0301 13.2178 13.9646 13.5516 13.8374C13.8854 13.7102 14.1887 13.5238 14.4442 13.2887C14.6997 13.0537 14.9023 12.7747 15.0406 12.4676C15.1788 12.1605 15.25 11.8313 15.25 11.4989C15.25 11.1665 15.1788 10.8374 15.0406 10.5303C14.9023 10.2232 14.6997 9.94417 14.4442 9.70914C14.1887 9.4741 13.8854 9.28765 13.5516 9.16045C13.2178 9.03325 12.86 8.96778 12.4987 8.96778C11.7691 8.96793 11.0693 9.23475 10.5535 9.70954C10.0377 10.1843 9.74796 10.8282 9.74813 11.4995C9.74829 12.1708 10.0383 12.8146 10.5544 13.2891C11.0705 13.7637 11.7703 14.0302 12.5 14.0301H12.4987ZM12.4987 17.0201C12.1376 17.0202 11.78 17.0858 11.4465 17.2131C11.1129 17.3404 10.8098 17.5269 10.5546 17.7619C10.2993 17.9969 10.0969 18.2759 9.95885 18.583C9.8208 18.89 9.74984 19.219 9.75 19.5512C9.75016 19.8835 9.82146 20.2124 9.95981 20.5193C10.0982 20.8262 10.3009 21.105 10.5563 21.3399C10.8118 21.5747 11.1151 21.7609 11.4488 21.8879C11.7825 22.0149 12.1401 22.0802 12.5013 22.0801C13.2306 22.0798 13.9299 21.8129 14.4454 21.3382C14.9609 20.8636 15.2503 20.2199 15.25 19.5489C15.2497 18.8779 14.9596 18.2345 14.4437 17.7603C13.9277 17.286 13.2281 17.0198 12.4987 17.0201ZM12.4987 5.98008C13.2284 5.98008 13.9282 5.7134 14.4442 5.23872C14.9601 4.76404 15.25 4.12023 15.25 3.44893C15.25 2.77763 14.9601 2.13382 14.4442 1.65913C13.9282 1.18445 13.2284 0.917778 12.4987 0.917778C11.7691 0.917778 11.0693 1.18445 10.5533 1.65913C10.0374 2.13382 9.7475 2.77763 9.7475 3.44893C9.7475 4.12023 10.0374 4.76404 10.5533 5.23872C11.0693 5.7134 11.7691 5.98008 12.4987 5.98008Z" fill="black"/>
       </svg>
         </div>
        <div
-      className="pr-36 pl-16 py-16">
+      className="md:pr-36 md:pl-16 md:py-16  px-3">
         
-      <div className="flex gap-10">
+      <div className="md:flex flex-1  gap-10">
       <div className="flex flex-col gap-3">
       <Image
         objectFit="cover"
@@ -26,26 +30,30 @@ const AboutUs = () => {
       <span className="text-xl text-center font-bold">SCOUNT CAMP</span>
       </div>
       <div>
-      <div className="">
-        {
-              [{
-                "title": "Kicukiro, Kigali",
-                "description": "IPRC stadium",
-              },
-              {
-                "title": "Kicukiro, Kigali",
-                "description": "IPRC stadium",
-              },
-              {
-                "title": "Kicukiro, Kigali",
-                "description": "IPRC stadium",
-              }
-            ].map((item, index) => <div key={index} className="text-lg flex-1 py-2">
-            <h5 className="font-semibold ">{item.title}</h5>
+      <div>
+        { 
+        activities.map((activity) => 
+        <div key={activity.id} >
+          <div className="text-lg flex-1 py-2">
+            <h5 className="font-semibold ">{activity.venue}</h5>
             <span className="italic font-light">
-          {item.description}
+          {activity.name}
             </span>
-          </div> )
+          </div>
+          <div className="text-lg flex-1 py-2">
+            <h5 className="font-semibold ">{activity.date.toLocaleDateString()}</h5>
+            <span className="italic font-light">
+            {new Date(activity.created_at).toLocaleDateString()}
+            </span>
+          </div>
+          <div className="text-lg flex-1 py-2">
+            <h5 className="font-semibold ">Organized by: {activity.organizer}</h5>
+            <span className="italic font-light">
+          {activity.venue}
+            </span>
+          </div>
+        </div>
+         )
         }    
       </div>
       <div className="flex items-center mt-2 ml-3">

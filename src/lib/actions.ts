@@ -1,5 +1,6 @@
 "use server";
 import { prisma } from "./db";
+import { redirect } from "next/navigation";
 const date = new Date()
 export const addNewUser = async (formData: any) => {
   const user = await prisma.member.create({
@@ -26,7 +27,7 @@ export const addNewUser = async (formData: any) => {
 };
 
 export const addNewActivity = async (formData: any) => {
-  const admin = await prisma.admin.findUnique({ where: { id: 1 }})
+  const admin = await prisma.admin.findUnique({ where: { id: 2 }})
   if(admin) {
     const activity = await prisma.activity.create({
       data: {
@@ -38,9 +39,16 @@ export const addNewActivity = async (formData: any) => {
         organizer: formData.get("organizer"),
         created_at: date.toISOString(),
         admin: {
-          connect: { id: 1}
+          connect: { id: 2}
         }
       },
     });
+    redirect("/activity")
   }
 };
+
+export const getActivities = async () => {
+  const item = await prisma.activity.findMany()
+  return [...item]
+}
+
