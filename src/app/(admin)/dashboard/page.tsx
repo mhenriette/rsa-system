@@ -14,8 +14,8 @@ const DashboardPage = async () => {
     <div className="p-5">
       <div className="flex gap-x-3 items-center">
         <Members total={members.length} />
-        <FemaleMembers total={members.slice(0, 20).length} />
-        <MaleMembers total={members.slice(20).length} />
+        <FemaleMembers total={members.slice(0, 7).length} />
+        <MaleMembers total={members.slice(7).length} />
       </div>
       <div className="mt-5">
         <h2 className="italic font-medium text-lg">New applications</h2>
