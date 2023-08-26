@@ -99,3 +99,18 @@ model Donation{
   admin_id Int @unique
   admin Admin @relation(fields: [admin_id], references: [id])
 }
+model Applicants{
+   id Int @id @default(autoincrement())
+  email String
+  First_name String
+  last_name String
+  applicant_id String @default(uuid())
+  contact String
+  district String
+  Sector String
+  occupation String
+  gender String
+  age String
+  reason String
+  joined_at DateTime
+}
