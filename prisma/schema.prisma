@@ -104,14 +104,13 @@ model Applicants{
   email String
   First_name String
   last_name String
-  member_id String @default(uuid())
+  applicant_id String @default(uuid())
   contact String
-  category String
-  hasCard Boolean
-  joined_at DateTime
-  unit_name String
   district String
-  address String
-  role String
+  Sector String
   occupation String
+  gender String
+  age String
+  reason String
+  joined_at DateTime
 }

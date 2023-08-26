@@ -40,23 +40,23 @@ const page = (): ReactElement => {
           name="gender"
           options={["male", "female"]}
         />
-        <InputField placeholder="Location" label="Location" name="address" />
-        <InputField placeholder="Enter role" label="Role" name="role" />
-        <SelectField
+        {/* <InputField placeholder="Location" label="Location" name="address" /> */}
+        {/* <InputField placeholder="Enter role" label="Role" name="role" /> */}
+        {/* <SelectField
           placeholder="Select category"
           label="Category"
           name="category"
           options={["Cub Scouts", "Scouts", "Companions", "Rover Scout"]}
-        />
+        /> */}
         <InputField
           placeholder="Phone number"
           label="Phone number"
           name="contact"
         />
         <InputField
-          placeholder="Enter unit name"
-          label="Unit name"
-          name="unit_name"
+          placeholder="Enter your Sector"
+          label="Sector"
+          name="sector"
         />
         <InputField
           placeholder="Email"
@@ -69,6 +69,12 @@ const page = (): ReactElement => {
           placeholder="Enter occupation"
           label="Occupation"
           name="occupation"
+        />
+        <InputField placeholder="Enter Your age" label="age" name="age" />
+        <InputField
+          placeholder="Describe the reason why you want to Join Scout Association"
+          label="Reason"
+          name="reason"
         />
         <div className="col-span-2 flex justify-center mt-16">
           <button
