@@ -5,7 +5,7 @@ const Button = ({
 }: {
   children: string;
   full?: string;
-  className: string;
+  className?: string;
 }) => {
   return (
     <div
