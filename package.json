@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^4.23.2",
     "@prisma/client": "^5.2.0",
     "@railway/cli": "^3.4.0",
+    "@reach/dialog": "^0.18.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",

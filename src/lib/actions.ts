@@ -1,5 +1,6 @@
 "use server";
 import { prisma } from "./db";
+import { redirect } from "next/navigation";
 const date = new Date()
 export const addNewUser = async (formData: any) => {
   const user = await prisma.member.create({
@@ -26,9 +27,35 @@ export const addNewUser = async (formData: any) => {
 };
 
 
+export const addNewReport = async (formData: any) => {
+  const adminId = 1; 
+  
+  const user = await prisma.report.create({
+    data: {
+      author: formData.get("author"),
+      content: formData.get("content"),
+      type: formData.get("type"),
+      created_at: new Date(),
+      status: "pending",
+      admin: {
+        connect: {
+          id: adminId,
+        },
+      },
+    },
+  });
+  redirect("/reports")
+};
+
+
  
  
 export const getMembers = async () => {
   const item = await prisma.member.findMany()
   return [...item]
+}
+
+export const getReports = async () => {
+  const items = await prisma.report.findMany()
+  return [...items]
 }
