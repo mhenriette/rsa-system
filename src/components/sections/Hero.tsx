@@ -1,4 +1,5 @@
 import Button from "../ui/Button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -16,7 +17,9 @@ const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-5 items-center justify-center mt-5">
               <Button full="true">Volunteer</Button>
-              <Button full="true">Join Scouts</Button>
+              <Link href="/applicant" className="w-full">
+                <Button full="true">Join Scouts</Button>
+              </Link>
             </div>
           </div>
         </div>
