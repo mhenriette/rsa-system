@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { AiFillHome, AiFillFund } from "react-icons/ai";
-import { FaPeopleGroup, FaPersonDigging } from "react-icons/fa6";
-import { TbReportSearch } from "react-icons/tb";
+import { AiFillFund, AiFillHome } from "react-icons/ai";
 import { BiSolidMessageSquare } from "react-icons/bi";
 import { CgWebsite } from "react-icons/cg";
+import { FaPeopleGroup, FaPersonDigging } from "react-icons/fa6";
 import { GrGallery } from "react-icons/gr";
+import { TbReportSearch } from "react-icons/tb";
 const DashboardLayout = () => {
   return (
     <div className="flex flex-col w-1/5 bg-indigo-400">

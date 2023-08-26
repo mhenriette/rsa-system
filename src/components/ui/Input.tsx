@@ -8,11 +8,11 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
-  ({ label, className, error, errorMessage, name, ...props }, ref) => {
+  ({ label, className, error, errorMessage, required, name, ...props }, ref) => {
     return (
       <div className="w-full">
         <label className="label text-lg" htmlFor={name}>
-          {label}
+          {label} {required && <small className="text-red-500 text-sm">*</small>}
         </label>
         <input
           type={props.type ?? "text"}
@@ -20,6 +20,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           placeholder={props.placeholder}
           className="border-[#C9C9C9] rounded mt-1 border px-5 py-2 w-full"
           ref={ref}
+          required={required}
           {...props}
         />
         {error && errorMessage && (
