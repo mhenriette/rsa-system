@@ -8,7 +8,9 @@ import { ReactElement } from "react";
 const page = (): ReactElement => {
   return (
     <div className="p-3 w-full px-28 py-16">
-      <h1 className="font-medium text-2xl text-[#5F8D4E]">Add a Member</h1>
+      <h1 className="font-medium text-2xl text-[#5F8D4E]">
+        Apply to join scouts
+      </h1>
       <div className="flex justify-end">
         <button className="flex text-red-500 text-lg underline mt-8 text-right">
           Clear
