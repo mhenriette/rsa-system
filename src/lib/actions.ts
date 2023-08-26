@@ -9,7 +9,7 @@ export const addNewUser = async (formData: any) => {
       last_name: formData.get("last_name"),
       member_id: formData.get("member_id"),
       category: formData.get("category"),
-      hasCard: true,
+      hasCard: false,
       joined_at: date,
       unit_name: formData.get("unit_name"),
       district: formData.get("district"),
@@ -24,9 +24,6 @@ export const addNewUser = async (formData: any) => {
     },
   });
 };
-
-
- 
  
 export const getMembers = async () => {
   const item = await prisma.member.findMany()
@@ -51,3 +48,12 @@ export const addApplicant = async (formData: any) => {
   
   });
 };
+
+export const getUsers = async ()=>{
+  const users = await prisma.member.findMany({
+    where:{
+      hasCard:false}
+  })
+  return [...users]
+}
+

@@ -2,7 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 console.log(authMiddleware,"authhh")
 
 export default authMiddleware({
-    publicRoutes:["/", "/applicant"]
+    publicRoutes:["/", "/applicant", "/membershipCard/:memberId*"]
 });
 
 
