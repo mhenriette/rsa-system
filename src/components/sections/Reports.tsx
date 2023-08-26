@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ApplicantRow from "../ui/ApplicantRow";
 import ReportSummary from "../ui/ReportSummary";
 import { Report } from ".prisma/client";
 
