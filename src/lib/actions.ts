@@ -51,6 +51,11 @@ export const getMembers = async () => {
   return [...item];
 };
 
+export const getApplicants = async () => {
+  const items = await prisma.applicants.findMany()
+  return [...items]
+}
+
 export const getReports = async () => {
   const items = await prisma.report.findMany();
   return [...items];

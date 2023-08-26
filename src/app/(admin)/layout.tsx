@@ -10,7 +10,7 @@ const layout = ({ children }: { children: ReactElement }) => {
         <div className="flex lex-1 h-full bg-[#E3E1E1]">
           <DashboardLayout />
           <div className="w-full h-full p-10 ">
-          <div className="bg-white">{children}</div>
+          <div className="">{children}</div>
         </div>
         </div>
       </main>
