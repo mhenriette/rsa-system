@@ -10,15 +10,25 @@ const page = (): ReactElement => {
     <div className="p-3 w-full px-28 py-16">
       <h1 className="font-medium text-2xl text-[#5F8D4E]">Add a Member</h1>
       <div className="flex justify-end">
-        <button className="flex text-red-500 text-lg underline mt-8 text-right">Clear</button>
+        <button className="flex text-red-500 text-lg underline mt-8 text-right">
+          Clear
+        </button>
       </div>
       <form
         action={AddNewMember}
         className="grid md:grid-cols-2 grid-cols-1 md:gap-x-28 gap-y-4 w-full mt-8"
       >
-        <InputField placeholder="Picture" label="Profile picture" name="" />
-        <InputField placeholder="Select gender" label="Gender" />
-        <InputField placeholder="First name" label="First name" name="first_name" />
+        <InputField
+          placeholder="Picture"
+          label="Profile picture"
+          name="picture"
+        />
+        <InputField placeholder="Select gender" label="Gender" name="gender" />
+        <InputField
+          placeholder="First name"
+          label="First name"
+          name="first_name"
+        />
         <SelectField
           placeholder="Enter district"
           label="District"
@@ -26,12 +36,30 @@ const page = (): ReactElement => {
           options={districts}
         />
         {/* <InputField placeholder="Enter district" label="District" name="district" /> */}
-        <InputField placeholder="Last name" label="Last name" name="last_name" />
-        <InputField placeholder="Location" label="Location" />
-        <InputField placeholder="Phone number" label="Phone number" />
-        <InputField placeholder="Date of joining" label="Date of joining" type="date" />
-        <InputField placeholder="Email" label="Email" type="email" name="email" />
-        <InputField placeholder="Date" label="Date" type="date" />
+        <InputField
+          placeholder="Last name"
+          label="Last name"
+          name="last_name"
+        />
+        <InputField placeholder="Location" label="Location" name="location" />
+        <InputField
+          placeholder="Phone number"
+          label="Phone number"
+          name="phone_number"
+        />
+        <InputField
+          placeholder="Date of joining"
+          label="Date of joining"
+          type="date"
+          name="date_joined"
+        />
+        <InputField
+          placeholder="Email"
+          label="Email"
+          type="email"
+          name="email"
+        />
+        <InputField placeholder="Date" label="Date" type="date" name="date" />
         <div className="col-span-2 flex justify-center mt-16">
           <button
             type="submit"
