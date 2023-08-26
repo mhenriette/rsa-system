@@ -27,8 +27,8 @@ export const AddNewMember = async (formData: any) => {
 };
 
 export const addNewReport = async (formData: any) => {
-  const adminId = 1; 
-  
+  const adminId = 1;
+
   const user = await prisma.report.create({
     data: {
       author: formData.get("author"),
@@ -43,20 +43,24 @@ export const addNewReport = async (formData: any) => {
       },
     },
   });
-  redirect("/reports")
+  redirect("/reports");
 };
 
-
- 
 export const getMembers = async () => {
-  const item = await prisma.member.findMany()
-  return [...item]
-}
+  const item = await prisma.member.findMany();
+  return [...item];
+};
 
 export const getReports = async () => {
-  const items = await prisma.report.findMany()
-  return [...items]
-}
+  const items = await prisma.report.findMany();
+  return [...items];
+};
+
+export const getFundings = async () => {
+  const items = await prisma.donation.findMany();
+  return [...items];
+};
+
 export const addApplicant = async (formData: any) => {
   const applicant = await prisma.applicants.create({
     data: {
@@ -70,17 +74,34 @@ export const addApplicant = async (formData: any) => {
       reason: formData.get("reason"),
       Sector: formData.get("reason"),
       joined_at: date,
-      gender: formData.get("gender")
+      gender: formData.get("gender"),
     },
-  
   });
 };
 
-export const getUsers = async ()=>{
-  const users = await prisma.member.findMany({
-    where:{
-      hasCard:false}
-  })
-  return [...users]
-}
+export const addNewFunding = async (formData: any) => {
+  const adminId = 1;
 
+  const user = await prisma.donation.create({
+    data: {
+      about: formData.get("about"),
+      target: formData.get("target"),
+      created_at: new Date(),
+      admin: {
+        connect: {
+          id: adminId,
+        },
+      },
+    },
+  });
+  redirect("/donation");
+};
+
+export const getUsers = async () => {
+  const users = await prisma.member.findMany({
+    where: {
+      hasCard: false,
+    },
+  });
+  return [...users];
+};

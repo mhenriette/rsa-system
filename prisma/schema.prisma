@@ -96,7 +96,7 @@ model Donation{
   about String
   target String
   created_at DateTime
-  admin_id Int @unique
+  admin_id Int
   admin Admin @relation(fields: [admin_id], references: [id])
 }
 model Applicants{
