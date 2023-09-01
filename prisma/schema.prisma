@@ -19,11 +19,11 @@ model HqAdmin {
   email         String
   role          String          @default("admin")
   created_at    DateTime        @default(now())
-  unit          Unit            @relation(fields: [unitId], references: [id])
+  unit          Unit?           @relation(fields: [unitId], references: [id])
   activity      Activity[]
   donation      Donation[]
   announcements Announcements[]
-  unitId        Int             @unique
+  unitId        Int?            @unique
 }
 
 model DistrictManager {
