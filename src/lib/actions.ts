@@ -19,42 +19,47 @@ export const AddNewMember = async (formData: any) => {
       occupation: formData.get("occupation"),
     },
     include: {
-      payment: true,
+      // payment: true,
       activities: true,
     },
   });
   redirect("/members");
 };
 
-export const addNewReport = async (formData: any) => {
-  const adminId = 1;
+// export const addNewReport = async (formData: any) => {
+//   const adminId = 1;
 
-  const user = await prisma.report.create({
-    data: {
-      author: formData.get("author"),
-      content: formData.get("content"),
-      type: formData.get("type"),
-      created_at: new Date(),
-      status: "pending",
-      admin: {
-        connect: {
-          id: adminId,
-        },
-      },
-    },
-  });
-  redirect("/reports");
-};
+//   // const user = await prisma.report.create({
+//   //   data: {
+//   //     author: formData.get("author"),
+//   //     content: formData.get("content"),
+//   //     type: formData.get("type"),
+//   //     created_at: new Date(),
+//   //     status: "pending",
+//   //     admin: {
+//   //       connect: {
+//   //         id: adminId,
+//   //       },
+//   //     },
+//   //   },
+//   // });
+//   redirect("/reports");
+// };
 
 export const getMembers = async () => {
   const item = await prisma.member.findMany();
   return [...item];
 };
 
-export const getReports = async () => {
-  const items = await prisma.report.findMany();
+export const getApplicants = async () => {
+  const items = await prisma.applicants.findMany();
   return [...items];
 };
+
+// export const getReports = async () => {
+//   const items = await prisma.report.findMany();
+//   return [...items];
+// };
 
 export const getFundings = async () => {
   const items = await prisma.donation.findMany();
@@ -75,6 +80,7 @@ export const addApplicant = async (formData: any) => {
       Sector: formData.get("reason"),
       joined_at: date,
       gender: formData.get("gender"),
+      requeste_unit: "unit a",
     },
   });
 };
@@ -84,6 +90,8 @@ export const addNewFunding = async (formData: any) => {
 
   const user = await prisma.donation.create({
     data: {
+      title: "title",
+      paidAmount: "paid amaunt",
       about: formData.get("about"),
       target: formData.get("target"),
       created_at: new Date(),
