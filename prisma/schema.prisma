@@ -10,107 +10,136 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Member{
-    id Int @id @default(autoincrement())
-  email String
+model HqAdmin {
+  id            Int             @id @default(autoincrement())
+  username      String
+  first_name    String
+  last_name     String
+  contact       String
+  email         String
+  created_at    DateTime        @default(now())
+  unit          Unit            @relation(fields: [unitId], references: [id])
+  activity      Activity[]
+  donation      Donation[]
+  announcements Announcements[]
+  unitId        Int             @unique
+}
+
+model DistrictManager {
+  id            Int             @id @default(autoincrement())
+  username      String
+  first_name    String
+  last_name     String
+  contact       String
+  district      String
+  email         String
+  created_at    DateTime        @default(now())
+  activity      Activity[]
+  announcements Announcements[]
+  Unit          Unit[]
+}
+
+model UnitLeader {
+  id            Int             @id @default(autoincrement())
+  username      String
+  first_name    String
+  last_name     String
+  contact       String
+  district      String
+  email         String
+  created_at    DateTime        @default(now())
+  activity      Activity[]
+  announcements Announcements[]
+  Unit          Unit?
+  unitId        Int             @unique
+}
+
+model Member {
+  id         Int        @id @default(autoincrement())
+  email      String
   First_name String
-  last_name String
-  member_id String @default(uuid())
-  contact String
-  category String
-  hasCard Boolean
-  joined_at DateTime
-  unit_name String
-  district String
-  address String
-  role String
+  last_name  String
+  member_id  String     @default(uuid())
+  contact    String
+  category   String
+  hasCard    Boolean
+  joined_at  DateTime   @default(now())
+  unit_name  String
+  district   String
+  address    String
+  role       String
   occupation String
-  payment Payment[]
   activities Activity[]
-
+  Unit       Unit?      @relation(fields: [unitId], references: [id])
+  unitId     Int?
 }
+
+model Unit {
+  id                Int             @id @default(autoincrement())
+  username          String
+  districtManager   DistrictManager @relation(fields: [districtManagerId], references: [id])
+  districtManagerId Int
+  UnitLeader        UnitLeader      @relation(fields: [unitLeaderId], references: [id])
+  unitLeaderId      Int             @unique
+  district          String
+  HqAdmin           HqAdmin?
+  hqAdminId         Int             @unique
+  member            Member[]
+}
+
 model Activity {
-  id Int @id @default(autoincrement())
-  name String
-  date DateTime 
-  venue String
-  description String
-  image String
-  organizer String
-  created_at DateTime
-  members Member[]
-  admin_id Int @unique
-  admin Admin @relation(fields: [admin_id], references: [id])
-}
-
-model Payment {
-  id Int @id @default(autoincrement())
-  amount String
-  payer_names String
-  date DateTime
-  reason DateTime
-  member_id Int @unique
-  member Member @relation(fields: [member_id], references: [id])
+  id                Int              @id @default(autoincrement())
+  name              String
+  date              DateTime
+  venue             String
+  description       String
+  created_at        DateTime
+  members           Member[]
+  admin_id          Int              @unique
+  admin             HqAdmin          @relation(fields: [admin_id], references: [id])
+  DistrictManager   DistrictManager? @relation(fields: [districtManagerId], references: [id])
+  districtManagerId Int?
+  UnitLeader        UnitLeader?      @relation(fields: [unitLeaderId], references: [id])
+  unitLeaderId      Int?
 }
 
 model Announcements {
-id Int @id @default(autoincrement())
-title String
-communique String
-created_at DateTime
-status String
-Author String
-admin_id Int @unique
-admin Admin @relation(fields: [admin_id], references: [id])
+  id                Int              @id @default(autoincrement())
+  title             String
+  communique        String
+  created_at        DateTime
+  admin_id          Int              @unique
+  admin             HqAdmin          @relation(fields: [admin_id], references: [id])
+  DistrictManager   DistrictManager? @relation(fields: [districtManagerId], references: [id])
+  districtManagerId Int?
+  UnitLeader        UnitLeader?      @relation(fields: [unitLeaderId], references: [id])
+  unitLeaderId      Int?
 }
 
-model Report {
-  id Int @id @default(autoincrement())
-  author String
-  created_at  DateTime
-  type String
-  content String
-  status String
-  admin_id Int
-  admin Admin @relation(fields: [admin_id], references: [id])
+model Donation {
+  id         Int      @id @default(autoincrement())
+  about      String
+  title      String
+  target     String
+  paidAmount String
+  created_at DateTime @default(now())
+  admin_id   Int
+  admin      HqAdmin  @relation(fields: [admin_id], references: [id])
 }
 
-model Admin {
-  id Int @id @default(autoincrement())
-  username String
-  first_name String
-  last_name String
-  contact String
-  email String
-  role String
-  unit String
-  district String
-  created_at DateTime
-  reports Report[]
-  activity Activity[]
-  donation Donation[]
-  announcements Announcements[]
-}
-model Donation{
-  id Int @id @default(autoincrement())
-  about String
-  target String
-  created_at DateTime
-  admin_id Int
-  admin Admin @relation(fields: [admin_id], references: [id])
-}
-model Applicants{
-   id Int @id @default(autoincrement())
-  email String
-  First_name String
-  last_name String
-  applicant_id String @default(uuid())
-  contact String
-  district String
-  Sector String
-  occupation String
-  gender String
-  age String
-  reason String
-  joined_at DateTime
+model Applicants {
+  id            Int      @id @default(autoincrement())
+  email         String
+  First_name    String
+  last_name     String
+  applicant_id  String   @default(uuid())
+  contact       String
+  district      String
+  Sector        String
+  occupation    String
+  gender        String
+  age           String
+  reason        String
+  joined_at     DateTime
+  requeste_unit String
 }
