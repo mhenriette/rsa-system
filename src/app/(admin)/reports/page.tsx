@@ -1,11 +1,9 @@
-
-import { getReports } from "@/lib/actions";
 import ReportRow from "@/components/ui/ReportRow";
 import ReportsTitle from "@/components/sections/ReportsTitle";
 
 
 const page = async () => {
-  const reports = await getReports()
+  // const reports = await getReports()
   return (
     <div className="p-3 pt-16">
       <ReportsTitle />
@@ -17,9 +15,10 @@ const page = async () => {
           <p className="font-medium">status</p>
           <p className="font-medium">action</p>
         </div>
-        {reports.map((report) => (<ReportRow key={report.id} report={report} />))}
+        {/* {reports.map((report) => (<ReportRow key={report.id} report={report} />))} */}
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, natus!
       </div>
-      
+
     </div>
   );
 };
