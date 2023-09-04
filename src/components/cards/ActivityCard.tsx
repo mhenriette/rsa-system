@@ -1,75 +1,64 @@
 import Image from "next/image";
 import React from "react";
-import activityImg from "../../../public/activity.png";
-import { getActivities } from "@/lib/actions";
+import activityImg from "../../../public/scout_activity.png";
+interface ActivityCardProps {
+  id: String;
+  name: String;
+  venue: String;
+  date: Date;
+  description: String;
+  admin_id?: Number | null;
+  districtManagerId?: Number | null;
+  unitLeaderId?: Number | null;
+}
 
-const AboutUs = async () => {
-  const activities = await getActivities()
-  console.log(activities);
-  
+const ActivityCard = async ({
+  name,
+  venue,
+  date,
+  description,
+  admin_id,
+  districtManagerId,
+  unitLeaderId,
+}: ActivityCardProps) => {
+  function formatDateToDdMmYyyy(inputDate: Date) {
+    const date = new Date(inputDate);
+    const day = String(date.getDate()).padStart(2, "0"); // Get day with leading zero
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Get month with leading zero
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+  const formatDate = formatDateToDdMmYyyy(date);
+
   return (
     <div className="bg-[#EAEAEA] shadow-activity-shadow border-solid border">
-      <div className="flex justify-end pr-5 md:pt-8 py-2 ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23" fill="none">
-       <path d="M12.4987 14.0301C12.86 14.0301 13.2178 13.9646 13.5516 13.8374C13.8854 13.7102 14.1887 13.5238 14.4442 13.2887C14.6997 13.0537 14.9023 12.7747 15.0406 12.4676C15.1788 12.1605 15.25 11.8313 15.25 11.4989C15.25 11.1665 15.1788 10.8374 15.0406 10.5303C14.9023 10.2232 14.6997 9.94417 14.4442 9.70914C14.1887 9.4741 13.8854 9.28765 13.5516 9.16045C13.2178 9.03325 12.86 8.96778 12.4987 8.96778C11.7691 8.96793 11.0693 9.23475 10.5535 9.70954C10.0377 10.1843 9.74796 10.8282 9.74813 11.4995C9.74829 12.1708 10.0383 12.8146 10.5544 13.2891C11.0705 13.7637 11.7703 14.0302 12.5 14.0301H12.4987ZM12.4987 17.0201C12.1376 17.0202 11.78 17.0858 11.4465 17.2131C11.1129 17.3404 10.8098 17.5269 10.5546 17.7619C10.2993 17.9969 10.0969 18.2759 9.95885 18.583C9.8208 18.89 9.74984 19.219 9.75 19.5512C9.75016 19.8835 9.82146 20.2124 9.95981 20.5193C10.0982 20.8262 10.3009 21.105 10.5563 21.3399C10.8118 21.5747 11.1151 21.7609 11.4488 21.8879C11.7825 22.0149 12.1401 22.0802 12.5013 22.0801C13.2306 22.0798 13.9299 21.8129 14.4454 21.3382C14.9609 20.8636 15.2503 20.2199 15.25 19.5489C15.2497 18.8779 14.9596 18.2345 14.4437 17.7603C13.9277 17.286 13.2281 17.0198 12.4987 17.0201ZM12.4987 5.98008C13.2284 5.98008 13.9282 5.7134 14.4442 5.23872C14.9601 4.76404 15.25 4.12023 15.25 3.44893C15.25 2.77763 14.9601 2.13382 14.4442 1.65913C13.9282 1.18445 13.2284 0.917778 12.4987 0.917778C11.7691 0.917778 11.0693 1.18445 10.5533 1.65913C10.0374 2.13382 9.7475 2.77763 9.7475 3.44893C9.7475 4.12023 10.0374 4.76404 10.5533 5.23872C11.0693 5.7134 11.7691 5.98008 12.4987 5.98008Z" fill="black"/>
-      </svg>
-        </div>
-       <div
-      className="md:pr-36 md:pl-16 md:py-16  px-3">
-        
-      <div className="md:flex flex-1  gap-10">
-      <div className="flex flex-col gap-3">
-      <Image
-        objectFit="cover"
-        width={182}
-        height={219}
-        priority
-        alt="about"
-        src={activityImg}
-      />
-      <span className="text-xl text-center font-bold">SCOUNT CAMP</span>
-      </div>
-      <div>
-      <div>
-        { 
-        activities.map((activity) => 
-        <div key={activity.id} >
-          <div className="text-lg flex-1 py-2">
-            <h5 className="font-semibold ">{activity.venue}</h5>
-            <span className="italic font-light">
-          {activity.name}
-            </span>
+      <div className="py-10 px-16 rounded-lg">
+        <div className="flex flex-col md:flex-row flex-1 items-center gap-8">
+          <div className="flex flex-col gap-3">
+            <Image
+              objectFit="cover"
+              width={140}
+              height={140}
+              priority
+              alt="about"
+              src={activityImg}
+            />
+            <span className="text-xl text-center font-bold">SCOUNT CAMP</span>
           </div>
-          <div className="text-lg flex-1 py-2">
-            <h5 className="font-semibold ">{activity.date.toLocaleDateString()}</h5>
-            <span className="italic font-light">
-            {new Date(activity.created_at).toLocaleDateString()}
-            </span>
-          </div>
-          <div className="text-lg flex-1 py-2">
-            <h5 className="font-semibold ">Organized by: {activity.organizer}</h5>
-            <span className="italic font-light">
-          {activity.venue}
-            </span>
+          <div className="flex-1">
+            <h1 className="font-bold text-lg">{name}</h1>
+            <p>Venue: {venue}</p>
+            <p>Date: {formatDate}</p>
+            <p>{description}</p>
+            <p>{`Created by:${admin_id}`}</p>
+            {districtManagerId && <p>{`Created by:${districtManagerId}`}</p>}
+            {unitLeaderId && <p>{`Created by:${unitLeaderId}`}</p>}
           </div>
         </div>
-         )
-        }    
-      </div>
-      <div className="flex items-center mt-2 ml-3">
-        <span className="font-bold text-lg underline">
-          View
-        </span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-        <path d="M7.12495 5.55005C6.74702 5.55005 6.38456 5.69623 6.11732 5.95644C5.85008 6.21664 5.69995 6.56956 5.69995 6.93755V13.4125C5.69995 13.7805 5.85008 14.1335 6.11732 14.3937C6.38456 14.6539 6.74702 14.8 7.12495 14.8C7.50288 14.8 7.86534 14.6539 8.13258 14.3937C8.39982 14.1335 8.54995 13.7805 8.54995 13.4125V10.286L12.768 14.393C13.0381 14.6381 13.3954 14.7716 13.7645 14.7652C14.1337 14.7589 14.4859 14.6133 14.747 14.359C15.0081 14.1048 15.1577 13.7619 15.1642 13.4024C15.1707 13.043 15.0337 12.6951 14.782 12.432L10.564 8.32505H13.775C14.1529 8.32505 14.5153 8.17887 14.7826 7.91866C15.0498 7.65845 15.2 7.30554 15.2 6.93755C15.2 6.56956 15.0498 6.21664 14.7826 5.95644C14.5153 5.69623 14.1529 5.55005 13.775 5.55005H7.12495ZM7.12495 31.45C6.74702 31.45 6.38456 31.3039 6.11732 31.0437C5.85008 30.7835 5.69995 30.4305 5.69995 30.0625V23.5875C5.69995 23.2196 5.85008 22.8666 6.11732 22.6064C6.38456 22.3462 6.74702 22.2 7.12495 22.2C7.50288 22.2 7.86534 22.3462 8.13258 22.6064C8.39982 22.8666 8.54995 23.2196 8.54995 23.5875V26.714L12.768 22.607C13.0381 22.362 13.3954 22.2285 13.7645 22.2349C14.1337 22.2412 14.4859 22.3868 14.747 22.641C15.0081 22.8953 15.1577 23.2382 15.1642 23.5977C15.1707 23.9571 15.0337 24.305 14.782 24.568L10.564 28.675H13.775C14.1529 28.675 14.5153 28.8212 14.7826 29.0814C15.0498 29.3416 15.2 29.6946 15.2 30.0625C15.2 30.4305 15.0498 30.7835 14.7826 31.0437C14.5153 31.3039 14.1529 31.45 13.775 31.45H7.12495ZM32.3 6.93755C32.3 6.56956 32.1498 6.21664 31.8826 5.95644C31.6153 5.69623 31.2529 5.55005 30.875 5.55005H24.225C23.847 5.55005 23.4846 5.69623 23.2173 5.95644C22.9501 6.21664 22.8 6.56956 22.8 6.93755C22.8 7.30554 22.9501 7.65845 23.2173 7.91866C23.4846 8.17887 23.847 8.32505 24.225 8.32505H27.4359L23.218 12.432C22.9662 12.6951 22.8292 13.043 22.8357 13.4024C22.8422 13.7619 22.9918 14.1048 23.2529 14.359C23.514 14.6133 23.8662 14.7589 24.2354 14.7652C24.6045 14.7716 24.9618 14.6381 25.232 14.393L29.45 10.286V13.4125C29.45 13.7805 29.6001 14.1335 29.8673 14.3937C30.1346 14.6539 30.497 14.8 30.875 14.8C31.2529 14.8 31.6153 14.6539 31.8826 14.3937C32.1498 14.1335 32.3 13.7805 32.3 13.4125V6.93755ZM30.875 31.45C31.2529 31.45 31.6153 31.3039 31.8826 31.0437C32.1498 30.7835 32.3 30.4305 32.3 30.0625V23.5875C32.3 23.2196 32.1498 22.8666 31.8826 22.6064C31.6153 22.3462 31.2529 22.2 30.875 22.2C30.497 22.2 30.1346 22.3462 29.8673 22.6064C29.6001 22.8666 29.45 23.2196 29.45 23.5875V26.714L25.232 22.607C25.1015 22.4707 24.9442 22.3614 24.7694 22.2856C24.5946 22.2097 24.4059 22.1689 24.2145 22.1657C24.0232 22.1624 23.8332 22.1966 23.6557 22.2664C23.4783 22.3362 23.3171 22.4401 23.1818 22.5718C23.0465 22.7036 22.9398 22.8605 22.8681 23.0333C22.7964 23.2061 22.7612 23.3911 22.7646 23.5774C22.768 23.7637 22.8099 23.9474 22.8878 24.1176C22.9657 24.2878 23.0779 24.441 23.218 24.568L27.4359 28.675H24.225C23.847 28.675 23.4846 28.8212 23.2173 29.0814C22.9501 29.3416 22.8 29.6946 22.8 30.0625C22.8 30.4305 22.9501 30.7835 23.2173 31.0437C23.4846 31.3039 23.847 31.45 24.225 31.45H30.875Z" fill="black"/>
-        </svg>
-      </div>
-      </div>
       </div>
     </div>
-    </div>
-   
   );
 };
 
-export default AboutUs;
+export default ActivityCard;

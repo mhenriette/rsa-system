@@ -1,6 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
+import { error } from "console";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
   const user = await prisma.member.create({
@@ -115,25 +116,25 @@ export const getUsers = async () => {
 };
 
 export const addNewActivity = async (formData: any) => {
-  const admin = await prisma.admin.findUnique({ where: { id: 2 }})
-  if(admin) {
-    const activity = await prisma.activity.create({
-      data: {
-        name: formData.get("name"),
-        date: new Date(formData.get("date")).toISOString(),
-        venue: formData.get("venue"),
-        description: formData.get("description"),
-        image: "fddgdfgdfgdf",
-        organizer: formData.get("organizer"),
-        created_at: date.toISOString(),
-        admin: {
-          connect: { id: 2}
-        }
-      },
-    });
+  // const admin = await prisma.hqAdmin.findUnique({ where: { id: 4 }})
+  // console.log(admin, 'admin')
+  // if(admin) {
+    try{
+      const adminId = 4
+      const activity = await prisma.activity.create({
+        data: {
+          name: formData.get("name"),
+          date: new Date(formData.get("date")).toISOString(),
+          venue: formData.get("venue"),
+          description: formData.get("description"),
+          created_at: new Date(),
+          admin_id: adminId
+        },
+      });
+    }catch(error){console.error("The error is : ", error)}
     redirect("/activity")
   }
-};
+// };
 
 export const getActivities = async () => {
   const item = await prisma.activity.findMany()

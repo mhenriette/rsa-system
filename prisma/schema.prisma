@@ -91,14 +91,14 @@ model Unit {
 }
 
 model Activity {
-  id                Int              @id @default(autoincrement())
+  id                String            @id @default(uuid())
   name              String
   date              DateTime
   venue             String
   description       String
   created_at        DateTime
   members           Member[]
-  admin_id          Int              @unique
+  admin_id          Int             
   admin             HqAdmin          @relation(fields: [admin_id], references: [id])
   DistrictManager   DistrictManager? @relation(fields: [districtManagerId], references: [id])
   districtManagerId Int?
