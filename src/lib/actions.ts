@@ -1,6 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
+
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
   const user = await prisma.member.create({
@@ -24,6 +25,30 @@ export const AddNewMember = async (formData: any) => {
     },
   });
   redirect("/members");
+};
+
+export const login = async (formData: any) => {
+  const username = formData.get("username");
+  const password = formData.get("password");
+  console.log("formData", username, password);
+
+  // Query all three tables to find the user
+  const hqAdmin = await prisma.hqAdmin.findUnique({
+    where: { username },
+  });
+  const districtManager = await prisma.districtManager.findUnique({
+    where: { username },
+  });
+  const unitLeader = await prisma.unitLeader.findUnique({
+    where: { username },
+  });
+
+  if (hqAdmin) {
+    // Check password for admin
+    if (password === hqAdmin.password) {
+      redirect("/dashboard");
+    }
+  }
 };
 
 // export const addNewReport = async (formData: any) => {

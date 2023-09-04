@@ -30,7 +30,6 @@ const DashboardPage = async () => {
           <h2 className="italic font-medium text-lg">Latest reports</h2>
           <Reports reports={reports} />
         </div> */}
-
       </div>
     </div>
   );
