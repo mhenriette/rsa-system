@@ -18,7 +18,6 @@ const page = async () => {
         {/* {reports.map((report) => (<ReportRow key={report.id} report={report} />))} */}
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, natus!
       </div>
-
     </div>
   );
 };
