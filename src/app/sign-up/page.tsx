@@ -1,4 +1,4 @@
-import { SignUp } from "@clerk/nextjs";
+
 import logo from "@/public/Logo.png";
 import Image from "next/image";
 

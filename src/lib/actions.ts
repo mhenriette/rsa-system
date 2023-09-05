@@ -1,6 +1,9 @@
 "use server";
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
+import * as jose from "jose";
+import cookie from 'cookie';
+
 
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
@@ -28,9 +31,10 @@ export const AddNewMember = async (formData: any) => {
 };
 
 export const login = async (formData: any) => {
+  const secret = new TextEncoder().encode('JHDKWJDEJDBWKJ');
   const username = formData.get("username");
   const password = formData.get("password");
-  console.log("formData", username, password);
+
 
   // Query all three tables to find the user
   const hqAdmin = await prisma.hqAdmin.findUnique({
@@ -42,11 +46,19 @@ export const login = async (formData: any) => {
   const unitLeader = await prisma.unitLeader.findUnique({
     where: { username },
   });
+  const alg = "HS256";
+ 
 
+  
   if (hqAdmin) {
     // Check password for admin
     if (password === hqAdmin.password) {
-      redirect("/dashboard");
+      const token = await new jose.SignJWT({...hqAdmin,districtManager:{...districtManager},unitLeader:{
+        ...unitLeader
+      } }).setProtectedHeader({ alg })
+      .setExpirationTime("24h")
+      .sign(secret);
+      return {token}
     }
   }
 };

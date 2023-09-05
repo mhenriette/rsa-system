@@ -7,7 +7,6 @@ import Members from "@/components/ui/Members";
 import { getApplicants, getFundings, getMembers } from "@/lib/actions";
 const DashboardPage = async () => {
   const members = await getMembers();
-  // const reports = await getReports();
   const applicants = await getApplicants();
   const fundings = await getFundings();
   return (
@@ -26,10 +25,6 @@ const DashboardPage = async () => {
           <h2 className="italic font-medium text-lg">Latest funding request</h2>
           <Fundings fundings={fundings} />
         </div>
-        {/* <div className="flex-[2]">
-          <h2 className="italic font-medium text-lg">Latest reports</h2>
-          <Reports reports={reports} />
-        </div> */}
       </div>
     </div>
   );

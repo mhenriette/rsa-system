@@ -1,15 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
-import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 import { Dialog, DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 import { useRouter } from "next/navigation";
 
 const NavBar = () => {
-  const { isSignedIn } = useUser();
   const router = useRouter();
   const [showDialog, setShowDialog] = useState(false);
   const [memberId, setMemberId] = useState("");
@@ -65,14 +62,8 @@ const NavBar = () => {
           <Link href="#">Gallery</Link>
           <Link href="#">Join Scouts</Link>
           <Link href="#">About Us</Link>
-          {isSignedIn ? (
-            <>
-              <Link href="/dashboard">Dashboard</Link>
-              <UserButton afterSignOutUrl="/" />
-            </>
-          ) : (
-            <Link href="/sign-in">Login</Link>
-          )}
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/sign-in">Login</Link>
         </div>
       </div>
     </>
