@@ -2,9 +2,6 @@
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
 import * as jose from "jose";
-import cookie from 'cookie';
-
-
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
   const user = await prisma.member.create({
