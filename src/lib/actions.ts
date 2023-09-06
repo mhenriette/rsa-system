@@ -72,6 +72,7 @@ if(unitLeader){
 }
 };
 
+
 // export const addNewReport = async (formData: any) => {
 //   const adminId = 1;
 
@@ -132,21 +133,16 @@ export const addApplicant = async (formData: any) => {
 };
 
 export const addNewFunding = async (formData: any) => {
-  const adminId = 1;
 
   const user = await prisma.donation.create({
     data: {
-      title: "title",
-      paidAmount: "paid amaunt",
+      title: formData.get("title"),
+      paidAmount: formData.get("paid_amount"),
       about: formData.get("about"),
       target: formData.get("target"),
       created_at: new Date(),
-      admin: {
-        connect: {
-          id: adminId,
-        },
+      admin_id: Number(formData.get("admin_id"))
       },
-    },
   });
   redirect("/donation");
 };

@@ -5,15 +5,9 @@ import { getFundings } from "@/lib/actions";
 const page = async () => {
   const fundings = await getFundings();
   return (
-    <div className="p-3 pt-16">
+    <div className="p-3 pt-5">
       <FundingsTitle />
-      <div className="text-black mt-9 bg-white px-5">
-        <div className="grid grid-cols-5 h-16 border-b border-b-gray-800 border-opacity-50 items-center">
-          <p className="font-medium">About</p>
-          <p className="font-medium">Target</p>
-          <p className="font-medium">Date published</p>
-          <p className="font-medium">action</p>
-        </div>
+      <div className="mt-9 bg-white px-5 py-10 flex gap-10 flex-wrap h-screen overflow-y-scroll donation">
         {fundings.map((funding) => (
           <FundingRow key={funding.id} funding={funding} />
         ))}
