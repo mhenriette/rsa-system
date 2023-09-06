@@ -1,6 +1,7 @@
 "use client";
 import DashboardLayout from "@/components/cards/DashboardLayout";
 import DashboardNavbar from "@/components/navbar/DashboardNavbar";
+import { AuthContext } from "@/store/authContext";
 import { useRouter } from "next/navigation";
 import { ReactElement, useEffect, useState } from "react";
 import { BiLoader } from "react-icons/bi";
@@ -10,6 +11,7 @@ const Layout = ({ children }: { children: ReactElement }) => {
   const token: any = useReadLocalStorage("token");
   const [_, setUser] = useLocalStorage("token", "");
   const [loading, setLoading] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
 
   const router = useRouter();
   useEffect(() => {
@@ -27,6 +29,7 @@ const Layout = ({ children }: { children: ReactElement }) => {
             setUser("");
             throw val.message;
           }
+          setAuthUser(val.data);
         })
         .catch((err) => {
           console.table(err);
@@ -40,19 +43,23 @@ const Layout = ({ children }: { children: ReactElement }) => {
       handleFetch();
     }
   }, [token]);
+
   if (!token) {
     router.push("/sign-in");
   }
-  if (token && !loading) {
+
+  if (token && !loading && authUser) {
     return (
       <main className="bg-[#e3e0e0] h-screen">
-        <DashboardNavbar />
-        <div className="flex lex-1 h-full bg-[#E3E1E1]">
-          <DashboardLayout />
-          <div className="w-full h-full p-10 ">
-            <div className="">{children}</div>
+        <AuthContext.Provider value={{ token: token, user: authUser }}>
+          <DashboardNavbar />
+          <div className="flex flex-1 h-full bg-[#E3E1E1]">
+            <DashboardLayout />
+            <div className="w-full h-full p-10 ">
+              <div>{children}</div>
+            </div>
           </div>
-        </div>
+        </AuthContext.Provider>
       </main>
     );
   } else {

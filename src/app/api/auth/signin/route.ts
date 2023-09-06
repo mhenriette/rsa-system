@@ -7,8 +7,9 @@ export async function POST(req:Request,res:Response) {
     const secret = new TextEncoder().encode('JHDKWJDEJDBWKJ');
     try {
     const usersInfo = await jose.jwtVerify(token,secret);
+    
     return NextResponse.json({
-        success: true,
+        success: true, 
         data:{
             ...usersInfo.payload
         }

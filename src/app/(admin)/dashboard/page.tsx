@@ -1,3 +1,4 @@
+// "use client";
 import Applicants from "@/components/sections/Applicants";
 import Fundings from "@/components/sections/Fundings";
 import Reports from "@/components/sections/Reports";
@@ -5,10 +6,13 @@ import FemaleMembers from "@/components/ui/FemaleMember";
 import MaleMembers from "@/components/ui/MaleMember";
 import Members from "@/components/ui/Members";
 import { getApplicants, getFundings, getMembers } from "@/lib/actions";
+import { AuthContext } from "@/store/authContext";
+import { useContext } from "react";
 const DashboardPage = async () => {
   const members = await getMembers();
   const applicants = await getApplicants();
   const fundings = await getFundings();
+  // const user = useContext(AuthContext);
   return (
     <div className="p-5">
       <div className="flex gap-x-3 items-center">
