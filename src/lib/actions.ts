@@ -147,3 +147,30 @@ export const getUsers = async () => {
   });
   return [...users];
 };
+
+export const addNewActivity = async (formData: any) => {
+  // const admin = await prisma.hqAdmin.findUnique({ where: { id: 4 }})
+  // console.log(admin, 'admin')
+  // if(admin) {
+    try{
+      const adminId = 4
+      const activity = await prisma.activity.create({
+        data: {
+          name: formData.get("name"),
+          date: new Date(formData.get("date")).toISOString(),
+          venue: formData.get("venue"),
+          description: formData.get("description"),
+          created_at: new Date(),
+          admin_id: adminId
+        },
+      });
+    }catch(error){console.error("The error is : ", error)}
+    redirect("/activity")
+  }
+// };
+
+export const getActivities = async () => {
+  const item = await prisma.activity.findMany()
+  return [...item]
+}
+
