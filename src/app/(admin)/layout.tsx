@@ -2,7 +2,7 @@
 import DashboardLayout from "@/components/cards/DashboardLayout";
 import DashboardNavbar from "@/components/navbar/DashboardNavbar";
 import { AuthContext } from "@/store/authContext";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { ReactElement, useEffect, useState } from "react";
 import { BiLoader } from "react-icons/bi";
 import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: ReactElement }) => {
   const [loading, setLoading] = useState(false);
   const [authUser, setAuthUser] = useState<any>(null);
 
-  const router = useRouter();
+  // const router = useRouter();
   useEffect(() => {
     async function handleFetch() {
       setLoading(true);
@@ -45,7 +45,8 @@ const Layout = ({ children }: { children: ReactElement }) => {
   }, [token]);
 
   if (!token) {
-    router.push("/sign-in");
+    // router.push("/sign-in");
+    redirect("/sign-in");
   }
 
   if (token && !loading && authUser) {

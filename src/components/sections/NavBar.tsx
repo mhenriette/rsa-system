@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { Dialog, DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const NavBar = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [showDialog, setShowDialog] = useState(false);
   const [memberId, setMemberId] = useState("");
   const open = () => setShowDialog(true);
@@ -41,7 +41,7 @@ const NavBar = () => {
               <button
                 className="close-button bg-red-500 p-4"
                 onClick={() => {
-                  router.push(`/membershipCard/${memberId}`);
+                  redirect(`/membershipCard/${memberId}`);
                 }}
               >
                 Search
