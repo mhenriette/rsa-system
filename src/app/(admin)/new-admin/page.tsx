@@ -1,6 +1,6 @@
 "use server";
 import InputField from "@/components/ui/Input";
-import { addNewHqAdmin, getUnits } from "@/lib/actions";
+import { addNewDistrictManager, addNewHqAdmin, addNewUnitLeader, getUnits } from "@/lib/actions";
 import Link from "next/link";
 import leftArrow from "@/public/leftArrow.svg";
 import Image from "next/image";
@@ -12,7 +12,6 @@ const Page = async ({
   searchParams: { type?: "hqadmin" | "districtmanager" | "unitleader" };
 }) => {
   const units = await getUnits();
-  console.log(units, "=====sdfs====");
   const type = searchParams.type;
   const admins = {
     hqadmin: "HQ Admin",
@@ -36,7 +35,7 @@ const Page = async ({
         </button>
       </div>
       <form
-        action={addNewHqAdmin}
+        action={type === "hqadmin" ? addNewHqAdmin : type === "districtmanager" ? addNewDistrictManager : addNewUnitLeader}
         className="grid md:grid-cols-2 grid-cols-1 md:gap-x-16 gap-y-4 w-full mt-8"
       >
         <InputField
@@ -68,8 +67,8 @@ const Page = async ({
               <SelectField
               label="Unit"
               placeholder="Select unit"
-              name="unit"
-              options={units.map((unit) => unit.username)}
+              name="unitId"
+              options={units.map((unit) => ({ label: unit.username, value: unit.id }))}
 
               />
             </div>

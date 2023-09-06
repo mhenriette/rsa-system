@@ -203,13 +203,49 @@ export const addNewHqAdmin = async (formData: any) => {
       contact: formData.get("contact"),
       role: "hqadmin",
       created_at: date,
-      admin: {
-        connect: {
-          id: 1,
-        },
-      }
     },
   });
-  redirect("/hq-admin");
+  redirect("/dashboard");
 }
+
+
+export const addNewDistrictManager = async (formData: any) => {
+  const admin = await prisma.districtManager.create({
+    data: {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      first_name: formData.get("firstname"),
+      last_name: formData.get("lastname"),
+      email: formData.get("email"),
+      contact: formData.get("contact"),
+      district: formData.get("district"),
+      role: "districtmanager",
+      created_at: date,
+    },
+  });
+  redirect("/dashboard");
+}
+
+
+export const addNewUnitLeader = async (formData: any) => {
+
+  const admin = await prisma.unitLeader.create({
+    data: {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      first_name: formData.get("firstname"),
+      last_name: formData.get("lastname"),
+      email: formData.get("email"),
+      contact: formData.get("contact"),
+      unitId: Number(formData.get("unitId")),
+      district: formData.get("district"),
+      role: "unitleader",
+      created_at: date,
+    },
+  });
+  console.log(admin, '====================')
+  redirect("/dashboard");
+}
+
+
 
