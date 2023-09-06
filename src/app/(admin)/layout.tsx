@@ -2,7 +2,7 @@
 import DashboardLayout from "@/components/cards/DashboardLayout";
 import DashboardNavbar from "@/components/navbar/DashboardNavbar";
 import { AuthContext } from "@/store/authContext";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { ReactElement, useEffect, useState } from "react";
 import { BiLoader } from "react-icons/bi";
 import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
