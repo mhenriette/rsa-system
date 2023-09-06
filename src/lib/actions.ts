@@ -58,6 +58,18 @@ export const login = async (formData: any) => {
       return {token}
     }
   }
+if(districtManager){
+  if(password === districtManager.password){
+    const token = await new jose.SignJWT({...districtManager}).setProtectedHeader({alg}).setExpirationTime("24h").sign(secret);
+    return {token}
+  }
+}
+if(unitLeader){
+  if(password === unitLeader.password){
+    const token = await new jose.SignJWT({...unitLeader}).setProtectedHeader({alg}).setExpirationTime("24h").sign(secret);
+    return {token}
+  }
+}
 };
 
 // export const addNewReport = async (formData: any) => {
