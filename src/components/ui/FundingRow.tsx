@@ -27,6 +27,7 @@ export default function FundingRow({ funding }: { funding: Donation }) {
           alt="donation_pic"
           fill
           className="object-cover"
+          priority
         />
       </div>
       <div className="py-4 px-2">
