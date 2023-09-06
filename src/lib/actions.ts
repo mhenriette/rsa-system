@@ -45,7 +45,6 @@ export const login = async (formData: any) => {
   });
   const alg = "HS256";
  
-
   
   if (hqAdmin) {
     // Check password for admin
@@ -184,5 +183,33 @@ export const addNewActivity = async (formData: any) => {
 export const getActivities = async () => {
   const item = await prisma.activity.findMany()
   return [...item]
+}
+
+
+export const getUnits = async () => {
+  const items = await prisma.unit.findMany()
+  return [...items]
+}
+
+
+export const addNewHqAdmin = async (formData: any) => {
+  const admin = await prisma.hqAdmin.create({
+    data: {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      first_name: formData.get("firstname"),
+      last_name: formData.get("lastname"),
+      email: formData.get("email"),
+      contact: formData.get("contact"),
+      role: "hqadmin",
+      created_at: date,
+      admin: {
+        connect: {
+          id: 1,
+        },
+      }
+    },
+  });
+  redirect("/hq-admin");
 }
 
