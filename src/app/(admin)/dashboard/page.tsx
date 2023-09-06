@@ -27,7 +27,7 @@ const DashboardPage = async () => {
       <div className="mt-5 flex gap-2">
         <div className="flex-[3]">
           <h2 className="italic font-medium text-lg">Latest funding request</h2>
-          <Fundings fundings={fundings} />
+          {/* <Fundings fundings={fundings} /> */}
         </div>
       </div>
     </div>

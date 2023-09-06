@@ -41,7 +41,7 @@ const DashboardLayout = () => {
         className="py-2 px-5 text-lg font-semibold flex items-center space-x-2 active:bg-gray-400 rounded-md"
       >
         <AiFillFund />
-        <span>Funding</span>
+        <span>Donations</span>
       </Link>
       <Link
         href="/messages"
