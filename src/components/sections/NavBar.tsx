@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Dialog, DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const router = useRouter();
