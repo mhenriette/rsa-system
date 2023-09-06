@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: ReactElement }) => {
   const token: any = useReadLocalStorage("token");
   const [_, setUser] = useLocalStorage("token", "");
   const [loading, setLoading] = useState(false);
-  const [authUser, setAuthUser] = useState(null);
+  const [authUser, setAuthUser] = useState<any>(null);
 
   const router = useRouter();
   useEffect(() => {
@@ -49,9 +49,10 @@ const Layout = ({ children }: { children: ReactElement }) => {
   }
 
   if (token && !loading && authUser) {
+    const values: any = { token: token, user: authUser };
     return (
       <main className="bg-[#e3e0e0] h-screen">
-        <AuthContext.Provider value={{ token: token, user: authUser }}>
+        <AuthContext.Provider value={values}>
           <DashboardNavbar />
           <div className="flex flex-1 h-full bg-[#E3E1E1]">
             <DashboardLayout />
