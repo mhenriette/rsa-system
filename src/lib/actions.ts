@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
-import { error } from "console";
+import * as jose from "jose";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
   const user = await prisma.member.create({
@@ -25,6 +25,51 @@ export const AddNewMember = async (formData: any) => {
     },
   });
   redirect("/members");
+};
+
+export const login = async (formData: any) => {
+  const secret = new TextEncoder().encode('JHDKWJDEJDBWKJ');
+  const username = formData.get("username");
+  const password = formData.get("password");
+
+
+  // Query all three tables to find the user
+  const hqAdmin = await prisma.hqAdmin.findUnique({
+    where: { username },
+  });
+  const districtManager = await prisma.districtManager.findUnique({
+    where: { username },
+  });
+  const unitLeader = await prisma.unitLeader.findUnique({
+    where: { username },
+  });
+  const alg = "HS256";
+ 
+
+  
+  if (hqAdmin) {
+    // Check password for admin
+    if (password === hqAdmin.password) {
+      const token = await new jose.SignJWT({...hqAdmin,districtManager:{...districtManager},unitLeader:{
+        ...unitLeader
+      } }).setProtectedHeader({ alg })
+      .setExpirationTime("24h")
+      .sign(secret);
+      return {token}
+    }
+  }
+if(districtManager){
+  if(password === districtManager.password){
+    const token = await new jose.SignJWT({...districtManager}).setProtectedHeader({alg}).setExpirationTime("24h").sign(secret);
+    return {token}
+  }
+}
+if(unitLeader){
+  if(password === unitLeader.password){
+    const token = await new jose.SignJWT({...unitLeader}).setProtectedHeader({alg}).setExpirationTime("24h").sign(secret);
+    return {token}
+  }
+}
 };
 
 // export const addNewReport = async (formData: any) => {

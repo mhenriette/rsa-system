@@ -1,4 +1,4 @@
-import { SignUp } from "@clerk/nextjs";
+
 import logo from "@/public/Logo.png";
 import Image from "next/image";
 
@@ -13,9 +13,9 @@ const SignUpPage = () => {
           </h1>
           <h2 className="text-lg font-medium text-center">
             Create new Admin Account
-          </h2>
+          </h2> 
         </div>
-        <SignUp />
+        {/* <SignUp /> */}
       </div>
     </div>
   );

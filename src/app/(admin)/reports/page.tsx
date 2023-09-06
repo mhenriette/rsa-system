@@ -1,9 +1,13 @@
+"use client";
 import ReportRow from "@/components/ui/ReportRow";
 import ReportsTitle from "@/components/sections/ReportsTitle";
+import { useContext } from "react";
+import { AuthContext } from "@/store/authContext";
 
-
-const page = async () => {
+const Page = () => {
   // const reports = await getReports()
+  const authUser = useContext(AuthContext);
+  console.log(authUser, "00000");
   return (
     <div className="p-3 pt-16">
       <ReportsTitle />
@@ -18,9 +22,8 @@ const page = async () => {
         {/* {reports.map((report) => (<ReportRow key={report.id} report={report} />))} */}
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, natus!
       </div>
-
     </div>
   );
 };
 
-export default page;
+export default Page;

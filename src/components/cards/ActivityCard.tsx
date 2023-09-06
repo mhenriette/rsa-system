@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import activityImg from "../../../public/scout_activity.png";
 interface ActivityCardProps {
-  id: String;
+  id: String | Number;
   name: String;
   venue: String;
   date: Date;
