@@ -35,7 +35,13 @@ const Page = async ({
         </button>
       </div>
       <form
-        action={type === "hqadmin" ? addNewHqAdmin : type === "districtmanager" ? addNewDistrictManager : addNewUnitLeader}
+        action={
+          type === "hqadmin"
+            ? addNewHqAdmin
+            : type === "districtmanager"
+            ? addNewDistrictManager
+            : addNewUnitLeader
+        }
         className="grid md:grid-cols-2 grid-cols-1 md:gap-x-16 gap-y-4 w-full mt-8"
       >
         <InputField
@@ -45,7 +51,12 @@ const Page = async ({
         />
         <InputField placeholder="Last name" label="Last name" name="lastname" />
         <InputField placeholder="Username" label="Username" name="username" />
-        <InputField placeholder="email" label="Email" name="email" type="email" />
+        <InputField
+          placeholder="email"
+          label="Email"
+          name="email"
+          type="email"
+        />
         <InputField
           placeholder="Password"
           label="Password"
@@ -65,11 +76,13 @@ const Page = async ({
             />
             <div>
               <SelectField
-              label="Unit"
-              placeholder="Select unit"
-              name="unitId"
-              options={units.map((unit) => ({ label: unit.username, value: unit.id }))}
-
+                label="Unit"
+                placeholder="Select unit"
+                name="unitId"
+                options={units.map((unit: any) => ({
+                  label: unit.username,
+                  value: unit.id,
+                }))}
               />
             </div>
           </>
