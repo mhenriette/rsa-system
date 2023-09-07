@@ -240,6 +240,14 @@ export const addNewUnitLeader = async (formData: any) => {
       created_at: date,
     },
   });
+  await prisma.unit.update({
+    where: {
+      id: Number(formData.get("unitId"))
+    },
+    data: {
+      unitLeaderId: admin.id
+    }
+  })
   redirect("/dashboard");
 }
 

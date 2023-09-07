@@ -76,13 +76,11 @@ const Page = async ({
             />
             <div>
               <SelectField
-                label="Unit"
-                placeholder="Select unit"
-                name="unitId"
-                options={units.map((unit: any) => ({
-                  label: unit.username,
-                  value: unit.id,
-                }))}
+              label="Unit"
+              placeholder="Select unit"
+              name="unitId"
+              options={units.filter((unit:any) => !unit.unitLeaderId).map((unit:any) => ({ label: unit.username, value: unit.id + "" }))}
+
               />
             </div>
           </>
