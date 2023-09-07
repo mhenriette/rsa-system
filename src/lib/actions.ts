@@ -1,7 +1,7 @@
 "use server";
+import * as jose from "jose";
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
-import * as jose from "jose";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
   const user = await prisma.member.create({
@@ -28,10 +28,9 @@ export const AddNewMember = async (formData: any) => {
 };
 
 export const login = async (formData: any) => {
-  const secret = new TextEncoder().encode('JHDKWJDEJDBWKJ');
+  const secret = new TextEncoder().encode("JHDKWJDEJDBWKJ");
   const username = formData.get("username");
   const password = formData.get("password");
-
 
   // Query all three tables to find the user
   const hqAdmin = await prisma.hqAdmin.findUnique({
@@ -44,33 +43,42 @@ export const login = async (formData: any) => {
     where: { username },
   });
   const alg = "HS256";
- 
-  
+
   if (hqAdmin) {
     // Check password for admin
     if (password === hqAdmin.password) {
-      const token = await new jose.SignJWT({...hqAdmin,districtManager:{...districtManager},unitLeader:{
-        ...unitLeader
-      } }).setProtectedHeader({ alg })
-      .setExpirationTime("24h")
-      .sign(secret);
-      return {token}
+      const token = await new jose.SignJWT({
+        ...hqAdmin,
+        districtManager: { ...districtManager },
+        unitLeader: {
+          ...unitLeader,
+        },
+      })
+        .setProtectedHeader({ alg })
+        .setExpirationTime("24h")
+        .sign(secret);
+      return { token };
     }
   }
-if(districtManager){
-  if(password === districtManager.password){
-    const token = await new jose.SignJWT({...districtManager}).setProtectedHeader({alg}).setExpirationTime("24h").sign(secret);
-    return {token}
+  if (districtManager) {
+    if (password === districtManager.password) {
+      const token = await new jose.SignJWT({ ...districtManager })
+        .setProtectedHeader({ alg })
+        .setExpirationTime("24h")
+        .sign(secret);
+      return { token };
+    }
   }
-}
-if(unitLeader){
-  if(password === unitLeader.password){
-    const token = await new jose.SignJWT({...unitLeader}).setProtectedHeader({alg}).setExpirationTime("24h").sign(secret);
-    return {token}
+  if (unitLeader) {
+    if (password === unitLeader.password) {
+      const token = await new jose.SignJWT({ ...unitLeader })
+        .setProtectedHeader({ alg })
+        .setExpirationTime("24h")
+        .sign(secret);
+      return { token };
+    }
   }
-}
 };
-
 
 // export const addNewReport = async (formData: any) => {
 //   const adminId = 1;
@@ -95,6 +103,10 @@ if(unitLeader){
 export const getMembers = async () => {
   const item = await prisma.member.findMany();
   return [...item];
+};
+
+export const deleteMember = async (memberId: number) => {
+  await prisma.member.delete({ where: { id: memberId } });
 };
 
 export const getApplicants = async () => {
@@ -132,7 +144,6 @@ export const addApplicant = async (formData: any) => {
 };
 
 export const addNewFunding = async (formData: any) => {
-
   const user = await prisma.donation.create({
     data: {
       title: formData.get("title"),
@@ -140,8 +151,8 @@ export const addNewFunding = async (formData: any) => {
       about: formData.get("about"),
       target: formData.get("target"),
       created_at: new Date(),
-      admin_id: Number(formData.get("admin_id"))
-      },
+      admin_id: Number(formData.get("admin_id")),
+    },
   });
   redirect("/donation");
 };
@@ -159,33 +170,33 @@ export const addNewActivity = async (formData: any) => {
   // const admin = await prisma.hqAdmin.findUnique({ where: { id: 4 }})
   // console.log(admin, 'admin')
   // if(admin) {
-    try{
-      const activity = await prisma.activity.create({
-        data: {
-          name: formData.get("name"),
-          date: new Date(formData.get("date")).toISOString(),
-          venue: formData.get("venue"),
-          description: formData.get("description"),
-          created_at: new Date(),
-          admin_id:Number(formData.get("admin_id"))
-        },
-      });
-    }catch(error){console.error("The error is : ", error)}
-    redirect("/activity")
+  try {
+    const activity = await prisma.activity.create({
+      data: {
+        name: formData.get("name"),
+        date: new Date(formData.get("date")).toISOString(),
+        venue: formData.get("venue"),
+        description: formData.get("description"),
+        created_at: new Date(),
+        admin_id: Number(formData.get("admin_id")),
+      },
+    });
+  } catch (error) {
+    console.error("The error is : ", error);
   }
+  redirect("/activity");
+};
 // };
 
 export const getActivities = async () => {
-  const item = await prisma.activity.findMany()
-  return [...item]
-}
-
+  const item = await prisma.activity.findMany();
+  return [...item];
+};
 
 export const getUnits = async () => {
-  const items = await prisma.unit.findMany()
-  return [...items]
-}
-
+  const items = await prisma.unit.findMany();
+  return [...items];
+};
 
 export const addNewHqAdmin = async (formData: any) => {
   const admin = await prisma.hqAdmin.create({
@@ -200,8 +211,7 @@ export const addNewHqAdmin = async (formData: any) => {
     },
   });
   redirect("/dashboard");
-}
-
+};
 
 export const addNewDistrictManager = async (formData: any) => {
   const admin = await prisma.districtManager.create({
@@ -217,11 +227,9 @@ export const addNewDistrictManager = async (formData: any) => {
     },
   });
   redirect("/dashboard");
-}
-
+};
 
 export const addNewUnitLeader = async (formData: any) => {
-
   const admin = await prisma.unitLeader.create({
     data: {
       username: formData.get("username"),
@@ -237,14 +245,14 @@ export const addNewUnitLeader = async (formData: any) => {
   });
   await prisma.unit.update({
     where: {
-      id: Number(formData.get("unitId"))
+      id: Number(formData.get("unitId")),
     },
     data: {
-      unitLeaderId: admin.id
-    }
-  })
+      unitLeaderId: admin.id,
+    },
+  });
   redirect("/dashboard");
-}
+};
 
 export const addNewUnit = async (formData: any) => {
   const admin = await prisma.unit.create({
@@ -257,7 +265,4 @@ export const addNewUnit = async (formData: any) => {
     },
   });
   redirect("/dashboard");
-}
-
-
-
+};
