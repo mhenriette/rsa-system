@@ -15,7 +15,6 @@ const Layout = ({ children }: { children: ReactElement }) => {
 
   // const router = useRouter();
   useEffect(() => {
-    console.log(token, '==============')
     async function handleFetch() {
       setLoading(true);
       fetch("/api/auth/signin", {
