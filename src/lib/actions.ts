@@ -251,5 +251,18 @@ export const addNewUnitLeader = async (formData: any) => {
   redirect("/dashboard");
 }
 
+export const addNewUnit = async (formData: any) => {
+  const admin = await prisma.unit.create({
+    data: {
+      username: formData.get("username"),
+      district: formData.get("district"),
+      districtManagerId: 1,
+      hqAdminId: 1,
+      unitLeaderId: undefined,
+    },
+  });
+  redirect("/dashboard");
+}
+
 
 
