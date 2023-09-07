@@ -3,10 +3,9 @@ import { login } from "@/lib/actions";
 import logo from "@/public/Logo.png";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useLocalStorage } from "usehooks-ts";
 const page = () => {
-  const router = useRouter();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [_, setUser] = useLocalStorage("token", "");
 
@@ -14,7 +13,7 @@ const page = () => {
     try {
       const res = await login(formData);
       setUser(JSON.stringify(res?.token));
-      router.push("/dashboard");
+      redirect("/dashboard");
     } catch (error) {
       console.log(error);
     }
@@ -22,11 +21,6 @@ const page = () => {
 
   return (
     <main className="relative flex flex-1 flex-col overflow-hidden px-4 py-8 sm:px-6 lg:px-8">
-      <img
-        src="/img/beams-cover@95.jpg"
-        alt=""
-        className="absolute left-1/2 top-0 -ml-[47.5rem] w-[122.5rem] max-w-none"
-      />
       <div className="absolute inset-0 text-slate-900/[0.07] [mask-image:linear-gradient(to_bottom_left,white,transparent,transparent)]">
         <Image src={logo} width={52} height={52} alt="logo" />
       </div>
