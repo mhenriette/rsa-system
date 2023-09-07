@@ -23,7 +23,12 @@ const page = (): ReactElement => {
         action={AddNewMember}
         className="grid md:grid-cols-2 grid-cols-1 md:gap-x-28 gap-y-4 w-full mt-8"
       >
-        <InputField placeholder="First name" label="First name" name="first_name" required={true} />
+        <InputField
+          placeholder="First name"
+          label="First name"
+          name="first_name"
+          required={true}
+        />
         <SelectField
           placeholder="Select district"
           label="District"
@@ -31,7 +36,12 @@ const page = (): ReactElement => {
           options={districts}
           required={true}
         />
-        <InputField placeholder="Last name" label="Last name" name="last_name" required={true} />
+        <InputField
+          placeholder="Last name"
+          label="Last name"
+          name="last_name"
+          required={true}
+        />
         <SelectField
           placeholder="Select gender"
           label="Gender"
@@ -39,14 +49,31 @@ const page = (): ReactElement => {
           options={["male", "female"]}
           required={true}
         />
-        <InputField placeholder="Location" label="Location" name="address" required={true} />
-        <InputField placeholder="Enter role" label="Role" name="role" required={true} />
+        <InputField
+          placeholder="Location"
+          label="Location"
+          name="address"
+          required={true}
+        />
+        <InputField
+          placeholder="Enter role"
+          label="Role"
+          name="role"
+          required={true}
+        />
         <SelectField
           placeholder="Select category"
           label="Category"
           name="category"
           required={true}
-          options={["Cub Scouts", "Scouts", "Companions", "Rover Scout"]}
+          options={[
+            "Squirrels",
+            "Beavers",
+            "Cubs",
+            "scouts",
+            "Explorers",
+            "Network",
+          ]}
         />
         <InputField
           placeholder="Phone number"
@@ -60,7 +87,13 @@ const page = (): ReactElement => {
           name="unit_name"
           required={true}
         />
-        <InputField placeholder="Email" label="Email" type="email" name="email" required={true} />
+        <InputField
+          placeholder="Email"
+          label="Email"
+          type="email"
+          name="email"
+          required={true}
+        />
         <InputField
           placeholder="Enter occupation"
           label="Occupation"
