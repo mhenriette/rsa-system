@@ -276,8 +276,7 @@ export const addNewUnitLeader = async (formData: any) => {
   await sendMailPromise(
     admin.email,
     "New Unit leader credentials",
-    `
-  Your credentials for the Rwanda Scouts Association Unit leader are:
+    `Your credentials for the Rwanda Scouts Association Unit leader are:
   Username: ${admin.username}
   Password: ${admin.password}
   `
