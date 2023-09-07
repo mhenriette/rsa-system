@@ -42,12 +42,13 @@ const Layout = ({ children }: { children: ReactElement }) => {
     if (token) {
       handleFetch();
     }
+    if (!token) {
+      // router.push("/sign-in");
+      redirect("/sign-in");
+    }
   }, [token]);
 
-  if (!token) {
-    // router.push("/sign-in");
-    redirect("/sign-in");
-  }
+
 
   if (token && !loading && authUser) {
     const values: any = { token: token, user: authUser };
