@@ -15,6 +15,7 @@ const Layout = ({ children }: { children: ReactElement }) => {
 
   // const router = useRouter();
   useEffect(() => {
+    console.log(token, '==============')
     async function handleFetch() {
       setLoading(true);
       fetch("/api/auth/signin", {
@@ -42,12 +43,13 @@ const Layout = ({ children }: { children: ReactElement }) => {
     if (token) {
       handleFetch();
     }
+    if (!token) {
+      // router.push("/sign-in");
+      redirect("/sign-in");
+    }
   }, [token]);
 
-  if (!token) {
-    // router.push("/sign-in");
-    redirect("/sign-in");
-  }
+
 
   if (token && !loading && authUser) {
     const values: any = { token: token, user: authUser };
