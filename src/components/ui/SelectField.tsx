@@ -3,7 +3,7 @@ import { SelectHTMLAttributes, forwardRef } from "react";
 interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
   placeholder: string;
-  options: string[];
+  options: string[] | ({ label: string; value: string })[];
 }
 
 const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
@@ -30,8 +30,8 @@ const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
             </option>
           )}
           {options.map((option, index) => (
-            <option value={option} key={index}>
-              {option}
+            <option value={typeof option === "object" ? option.value : option} key={index}>
+              {typeof option === "object" ? option.label : option} 
             </option>
           ))}
         </select>

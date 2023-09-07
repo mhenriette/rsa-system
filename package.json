@@ -13,6 +13,7 @@
     "@prisma/client": "^5.2.0",
     "@railway/cli": "^3.4.0",
     "@reach/dialog": "^0.18.0",
+    "@reach/listbox": "^0.18.0",
     "@react-pdf/renderer": "^3.1.12",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",

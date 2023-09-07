@@ -45,7 +45,6 @@ export const login = async (formData: any) => {
   });
   const alg = "HS256";
  
-
   
   if (hqAdmin) {
     // Check password for admin
@@ -181,4 +180,85 @@ export const getActivities = async () => {
   const item = await prisma.activity.findMany()
   return [...item]
 }
+
+
+export const getUnits = async () => {
+  const items = await prisma.unit.findMany()
+  return [...items]
+}
+
+
+export const addNewHqAdmin = async (formData: any) => {
+  const admin = await prisma.hqAdmin.create({
+    data: {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      first_name: formData.get("firstname"),
+      last_name: formData.get("lastname"),
+      email: formData.get("email"),
+      contact: formData.get("contact"),
+      created_at: date,
+    },
+  });
+  redirect("/dashboard");
+}
+
+
+export const addNewDistrictManager = async (formData: any) => {
+  const admin = await prisma.districtManager.create({
+    data: {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      first_name: formData.get("firstname"),
+      last_name: formData.get("lastname"),
+      email: formData.get("email"),
+      contact: formData.get("contact"),
+      district: formData.get("district"),
+      created_at: date,
+    },
+  });
+  redirect("/dashboard");
+}
+
+
+export const addNewUnitLeader = async (formData: any) => {
+
+  const admin = await prisma.unitLeader.create({
+    data: {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      first_name: formData.get("firstname"),
+      last_name: formData.get("lastname"),
+      email: formData.get("email"),
+      contact: formData.get("contact"),
+      unitId: Number(formData.get("unitId")),
+      district: formData.get("district"),
+      created_at: date,
+    },
+  });
+  await prisma.unit.update({
+    where: {
+      id: Number(formData.get("unitId"))
+    },
+    data: {
+      unitLeaderId: admin.id
+    }
+  })
+  redirect("/dashboard");
+}
+
+export const addNewUnit = async (formData: any) => {
+  const admin = await prisma.unit.create({
+    data: {
+      username: formData.get("username"),
+      district: formData.get("district"),
+      districtManagerId: 1,
+      hqAdminId: 1,
+      unitLeaderId: undefined,
+    },
+  });
+  redirect("/dashboard");
+}
+
+
 
