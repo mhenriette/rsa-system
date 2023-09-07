@@ -143,6 +143,8 @@ export const addApplicant = async (formData: any) => {
       requeste_unit: "unit a",
     },
   });
+  await sendMailPromise(applicant.email, "Rwanda scouts association application status",
+  "Your application for membership has been received. You will be contacted soon for further information");
 };
 
 export const addNewFunding = async (formData: any) => {
