@@ -160,7 +160,6 @@ export const addNewActivity = async (formData: any) => {
   // console.log(admin, 'admin')
   // if(admin) {
     try{
-      const adminId = 4
       const activity = await prisma.activity.create({
         data: {
           name: formData.get("name"),
@@ -168,7 +167,7 @@ export const addNewActivity = async (formData: any) => {
           venue: formData.get("venue"),
           description: formData.get("description"),
           created_at: new Date(),
-          admin_id: adminId
+          admin_id:Number(formData.get("admin_id"))
         },
       });
     }catch(error){console.error("The error is : ", error)}

@@ -6,8 +6,11 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import leftArrow from "@/public/leftArrow.svg";
 import Image from "next/image";
+import { useContext } from "react";
+import { AuthContext } from "@/store/authContext";
 
 const Page = (): ReactElement => {
+  const { user }: any = useContext(AuthContext);
   const { reset } = useForm();
   return (
     <div className="p-3 w-full px-28 py-16">
@@ -38,6 +41,7 @@ const Page = (): ReactElement => {
           label="description"
           name="description"
         />
+        <InputField type="hidden" name="admin_id" value={user.id} />
         <div className="col-span-2 flex justify-center mt-16">
           <button
             type="submit"
