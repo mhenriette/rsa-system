@@ -24,7 +24,7 @@ const DashboardNavbar = () => {
             Add new admin
           </button>
           {open && (
-            <div className="absolute transform translate-y-2 gap-2 w-max shadow bg-gray-100 flex flex-col rounded p-5">
+            <div className="absolute text-gray-800 transform translate-y-2 gap-2 w-max shadow bg-gray-100 flex flex-col rounded p-5">
               <Link
                 onClick={() => setOpen(false)}
                 href={"new-admin?type=hqadmin"}
