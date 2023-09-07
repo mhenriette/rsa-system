@@ -5,18 +5,15 @@ import logo from "@/public/Logo.png";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useLocalStorage } from "usehooks-ts";
-const page = () => {
+const Page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [_, setUser] = useLocalStorage("token", "");
+  // const router = useRouter();
 
   async function onLogin(formData: FormData) {
-    try {
-      const res = await login(formData);
-      setUser(JSON.stringify(res?.token));
-      redirect("/dashboard");
-    } catch (error) {
-      console.log(error);
-    }
+    const res = await login(formData);
+    setUser(JSON.stringify(res?.token));
+    redirect("/dashboard");
   }
 
   return (
@@ -70,4 +67,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
