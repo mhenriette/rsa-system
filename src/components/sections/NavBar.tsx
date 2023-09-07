@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Dialog, DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 import { redirect } from "next/navigation";
+import scoutslogo from "../../../public/scouts.svg";
+import Image from "next/image";
 
 const NavBar = () => {
   // const router = useRouter();
@@ -50,20 +52,22 @@ const NavBar = () => {
           </div>
         </Dialog>
       </DialogOverlay>
-      <div className="flex flex-col md:flex-row justify-between py-5 px-10 items-center bg-violet-900">
-        <div className="font-bold text-2xl">RSA</div>
-        <div className="flex items-center gap-x-4 mt-3 md:mt-0">
+      <div className="flex flex-col md:flex-row justify-between text-purple-800 py-8 px-32 items-center bg-white">
+        <Image src={scoutslogo} width={182} height={42} alt="logo" priority />
+        <div className="flex items-center gap-x-4 font-semibold mt-3 md:mt-0">
           <button
-            className="bg-white text-purple-950 font-bold  px-10 py-3 text-center rounded-xl hover:bg-purple-700 hover:text-white"
+            className="text-white font-bold  px-10 py-3 text-center rounded-lg bg-purple-800 transition-colors ease-in delay-200 "
             onClick={() => open()}
           >
             Get your Membership id
           </button>
-          <Link href="#">Gallery</Link>
-          <Link href="#">Join Scouts</Link>
-          <Link href="#">About Us</Link>
           <Link href="/dashboard">Dashboard</Link>
-          <Link href="/sign-in">Login</Link>
+          <Link
+            href="/sign-in"
+            className="border border-purple-800 hover:text-white rounded-lg px-5 py-2.5 hover:bg-purple-800 hover:transition-colors delay-200 ease-in"
+          >
+            Login
+          </Link>
         </div>
       </div>
     </>

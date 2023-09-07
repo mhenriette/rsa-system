@@ -42,14 +42,6 @@ const page = (): ReactElement => {
           name="gender"
           options={["male", "female"]}
         />
-        {/* <InputField placeholder="Location" label="Location" name="address" /> */}
-        {/* <InputField placeholder="Enter role" label="Role" name="role" /> */}
-        {/* <SelectField
-          placeholder="Select category"
-          label="Category"
-          name="category"
-          options={["Cub Scouts", "Scouts", "Companions", "Rover Scout"]}
-        /> */}
         <InputField
           placeholder="Phone number"
           label="Phone number"
