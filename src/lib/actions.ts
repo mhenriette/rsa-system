@@ -201,7 +201,6 @@ export const addNewHqAdmin = async (formData: any) => {
       last_name: formData.get("lastname"),
       email: formData.get("email"),
       contact: formData.get("contact"),
-      role: "hqadmin",
       created_at: date,
     },
   });
@@ -219,7 +218,6 @@ export const addNewDistrictManager = async (formData: any) => {
       email: formData.get("email"),
       contact: formData.get("contact"),
       district: formData.get("district"),
-      role: "districtmanager",
       created_at: date,
     },
   });
@@ -239,11 +237,9 @@ export const addNewUnitLeader = async (formData: any) => {
       contact: formData.get("contact"),
       unitId: Number(formData.get("unitId")),
       district: formData.get("district"),
-      role: "unitleader",
       created_at: date,
     },
   });
-  console.log(admin, '====================')
   redirect("/dashboard");
 }
 

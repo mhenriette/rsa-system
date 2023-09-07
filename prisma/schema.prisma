@@ -85,11 +85,11 @@ model Unit {
   username          String
   districtManager   DistrictManager @relation(fields: [districtManagerId], references: [id])
   districtManagerId Int
-  UnitLeader        UnitLeader      @relation(fields: [unitLeaderId], references: [id])
-  unitLeaderId      Int             @unique
+  UnitLeader        UnitLeader?      @relation(fields: [unitLeaderId], references: [id])
+  unitLeaderId      Int?             @unique
   district          String
   HqAdmin           HqAdmin?
-  hqAdminId         Int             @unique
+  hqAdminId         Int
   member            Member[]
 }
 
