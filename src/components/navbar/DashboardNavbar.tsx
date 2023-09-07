@@ -10,7 +10,7 @@ const DashboardNavbar = () => {
   };
   const userInfo: any = useContext(AuthContext);
   return (
-    <div className="flex justify-between px-5 py-3 items-center bg-purple-900">
+    <div className="flex justify-between px-5 py-3 items-center text-white bg-purple-900">
       <Link className="flex gap-3 items-center space-x-2" href="/">
         <Image src={logo} width={32} height={32} alt="logo" />
         <p className="text-white font-semibold">RSA</p>
