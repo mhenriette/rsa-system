@@ -4,6 +4,7 @@ import About from "@components/sections/About";
 import Footer from "@components/sections/Footer";
 import Categories from "@/components/sections/Categories";
 import RunScouts from "@/components/sections/RunScouts";
+import Updates from "@/components/sections/Updates";
 export default function Home() {
   return (
     <main className="text-white">
@@ -12,6 +13,7 @@ export default function Home() {
       <Categories />
       <About />
       <RunScouts />
+      <Updates />
       <Footer />
     </main>
   );

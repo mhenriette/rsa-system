@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-violet-900 flex justify-between flex-col md:items-center py-5 px-10 md:py-10 md:px-16 ">
+    <div className="bg-theme flex justify-between flex-col md:items-center py-5 px-10 md:py-10 md:px-16 ">
       <div className="flex md:justify-center font-bold text-3xl mb-8 md:mb-0">
         RSA
       </div>
