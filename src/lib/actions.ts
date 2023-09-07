@@ -2,6 +2,7 @@
 import * as jose from "jose";
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
+import { sendMailPromise } from "./mailer";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
   const user = await prisma.member.create({
@@ -24,6 +25,11 @@ export const AddNewMember = async (formData: any) => {
       activities: true,
     },
   });
+  await sendMailPromise(
+    user.email,
+    "Rwanda scouts association application status",
+    "Your application for membership has been accepted. Welcome to the Rwanda Scouts Association"
+  );
   redirect("/members");
 };
 
@@ -141,6 +147,8 @@ export const addApplicant = async (formData: any) => {
       requeste_unit: "unit a",
     },
   });
+  await sendMailPromise(applicant.email, "Rwanda scouts association application status",
+  "Your application for membership has been received. You will be contacted soon for further information");
 };
 
 export const addNewFunding = async (formData: any) => {
@@ -210,6 +218,15 @@ export const addNewHqAdmin = async (formData: any) => {
       created_at: date,
     },
   });
+  await sendMailPromise(
+    admin.email,
+    "New HQ Admin credentials",
+    `
+  Your credentials for the Rwanda Scouts Association HQ Admin are:
+  Username: ${admin.username}
+  Password: ${admin.password}
+  `
+  );
   redirect("/dashboard");
 };
 
@@ -226,6 +243,15 @@ export const addNewDistrictManager = async (formData: any) => {
       created_at: date,
     },
   });
+  await sendMailPromise(
+    admin.email,
+    "New District Manager credentials",
+    `
+  Your credentials for the Rwanda Scouts Association District Manager are:
+  Username: ${admin.username}
+  Password: ${admin.password}
+  `
+  );
   redirect("/dashboard");
 };
 
@@ -251,6 +277,14 @@ export const addNewUnitLeader = async (formData: any) => {
       unitLeaderId: admin.id,
     },
   });
+  await sendMailPromise(
+    admin.email,
+    "New Unit leader credentials",
+    `Your credentials for the Rwanda Scouts Association Unit leader are:
+  Username: ${admin.username}
+  Password: ${admin.password}
+  `
+  );
   redirect("/dashboard");
 };
 
