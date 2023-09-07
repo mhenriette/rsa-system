@@ -1,7 +1,7 @@
-import Button from "@/components/ui/Button";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import PageProgres from "@/components/ui/PageProgress";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <PageProgres />
+        {children}
+      </body>
     </html>
   );
 }

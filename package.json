@@ -24,6 +24,8 @@
     "eslint-config-next": "13.4.16",
     "jose": "^4.14.6",
     "next": "13.4.16",
+    "next-progress": "^2.3.1",
+    "nextjs-progressbar": "^0.0.16",
     "nodemailer": "^6.9.5",
     "postcss": "8.4.27",
     "prisma": "^5.2.0",

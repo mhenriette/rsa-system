@@ -1,7 +1,12 @@
+import Loader from "@/components/ui/Loader";
 import React from "react";
 
 const loading = () => {
-  return <div>loading data ....</div>;
+  return (
+    <div>
+      <Loader />
+    </div>
+  );
 };
 
 export default loading;

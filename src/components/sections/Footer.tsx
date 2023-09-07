@@ -8,7 +8,7 @@ const Footer = () => {
         RSA
       </div>
       <div className="flex flex-col md:flex-row justify-between items-start md:w-3/4">
-        <div className="flex flex-col md:items-center mb-8 md:mb-0">
+        <div className="flex flex-col md:items-start mb-8 md:mb-0">
           <h1 className="font-bold text-2xl mb-5">Contact us</h1>
           <div className="flex flex-col gap-2 items-start">
             <p>rwandascout@gmail.com</p>
@@ -17,7 +17,7 @@ const Footer = () => {
             <p>Kigali, Rwanda</p>
           </div>
         </div>
-        <div className="flex flex-col md:items-center">
+        <div className="flex flex-col md:items-start">
           <h1 className="font-bold text-2xl mb-5">Websites</h1>
           <div className="flex flex-col items-start gap-2">
             <Link href="#">Home</Link>
