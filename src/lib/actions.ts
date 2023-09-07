@@ -113,6 +113,7 @@ export const getMembers = async () => {
 
 export const deleteMember = async (memberId: number) => {
   await prisma.member.delete({ where: { id: memberId } });
+  redirect("/members");
 };
 
 export const getApplicants = async () => {
