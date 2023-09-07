@@ -21,12 +21,14 @@ const DashboardPage = async () => {
         <MaleMembers total={members.slice(7).length} />
       </div>
       <div className="mt-5">
-        <h2 className="italic font-medium text-lg">New applications</h2>
+        <h2 className="capitalize mb-4 font-semibold text-base">
+          New applications
+        </h2>
         <Applicants applicants={applicants} />
       </div>
       <div className="mt-5 flex gap-2">
         <div className="flex-[3]">
-          <h2 className="italic font-medium text-lg">Latest funding request</h2>
+          <h2 className="italic font-medium text-sm">Latest funding request</h2>
           {/* <Fundings fundings={fundings} /> */}
         </div>
       </div>
