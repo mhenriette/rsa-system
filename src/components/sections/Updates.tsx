@@ -26,7 +26,7 @@ const Updates = () => {
         <h1 className="text-4xl font-extrabold text-center">
           What is Happening
         </h1>
-        <div className="grid grid-cols-2 place-content-center place-items-center space-x-5 text-black">
+        <div className="grid grid-cols-2 place-content-center items-start place-items-center space-x-5 text-black">
           {updates.map((update: any) => (
             <UpdateCard
               key={update.id}
