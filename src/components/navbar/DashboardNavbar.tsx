@@ -1,19 +1,21 @@
 import logo from "@/public/Logo.png";
+import { AuthContext } from "@/store/authContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 const DashboardNavbar = () => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
+  const userInfo:any = useContext(AuthContext);
   return (
     <div className="flex justify-between p-5 items-center bg-purple-900">
       <Link className="flex items-center space-x-2" href="/">
         <Image src={logo} width={32} height={32} alt="logo" />
         <p>Rwanda scouts association</p>
       </Link>
-      <div className="relative">
+      {userInfo?.user?.role === "hqadmin" && <div className="relative">
         <button
           onClick={handleClick}
           className="bg-white text-purple-950 font-bold  px-10 py-3 text-center rounded-xl hover:bg-purple-700 hover:text-white"
@@ -29,7 +31,7 @@ const DashboardNavbar = () => {
             <Link onClick={() => setOpen(false)} href={"new-admin?type=unitleader"}>Unit leader</Link>
           </div>
         )}
-      </div>
+      </div>}
     </div>
   );
 };
