@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 
 const page = async ({ params }: { params: { memberId: string } }) => {
   const memberId = params.memberId;
-  const memberInfo = await prisma.member.findUnique({
+  const memberInfo:any = await prisma.member.findUnique({
     where: {
       id: Number(memberId),
     },
