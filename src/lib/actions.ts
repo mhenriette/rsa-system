@@ -5,6 +5,7 @@ import { prisma } from "./db";
 import { sendMailPromise } from "./mailer";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
+  console.log("working============================")
   const user = await prisma.member.create({
     data: {
       email: formData.get("email"),
@@ -24,7 +25,9 @@ export const AddNewMember = async (formData: any) => {
       // payment: true,
       activities: true,
     },
+    
   });
+  await prisma.applicants.delete({ where: { id: Number(formData.get("id")) } })
   await sendMailPromise(
     user.email,
     "Rwanda scouts association application status",
