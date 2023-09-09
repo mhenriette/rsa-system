@@ -24,7 +24,7 @@ const DashboardNavbar = () => {
           >
             Add new admin
           </button>
-          <Link href="/profile">
+          <Link href="/profile" className="hover:text-purple-700">
             <FaUserAlt className="text-2xl" />
           </Link>
           {open && (
