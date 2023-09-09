@@ -206,6 +206,10 @@ export const getUnits = async () => {
   const items = await prisma.unit.findMany();
   return [...items];
 };
+export const getDonations =async () => {
+  const donations = await prisma.donation.findMany();
+  return [...donations]
+}
 
 export const addNewHqAdmin = async (formData: any) => {
   const admin = await prisma.hqAdmin.create({
