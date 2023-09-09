@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Dialog, DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import scoutslogo from "../../../public/scouts.svg";
 import Image from "next/image";
 
@@ -13,6 +13,7 @@ const NavBar = () => {
   const [memberId, setMemberId] = useState("");
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
+  const router = useRouter();
   return (
     <>
       <DialogOverlay
@@ -42,7 +43,7 @@ const NavBar = () => {
               <button
                 className="close-button bg-red-500 p-4"
                 onClick={() => {
-                  redirect(`/membershipCard/${memberId}`);
+                  router.push(`/membershipCard/${memberId}`);
                 }}
               >
                 Search
