@@ -1,6 +1,7 @@
 "use client";
 import DashboardLayout from "@/components/cards/DashboardLayout";
 import DashboardNavbar from "@/components/navbar/DashboardNavbar";
+import PageProgres from "@/components/ui/PageProgress";
 import { AuthContext } from "@/store/authContext";
 import { redirect } from "next/navigation";
 import { ReactElement, useEffect, useState } from "react";
@@ -53,17 +54,20 @@ const Layout = ({ children }: { children: ReactElement }) => {
   if (token && !loading && authUser) {
     const values: any = { token: token, user: authUser };
     return (
-      <main className="bg-[#e3e0e0] h-screen">
-        <AuthContext.Provider value={values}>
-          <DashboardNavbar />
-          <div className="flex flex-1 h-full bg-[#E3E1E1]">
-            <DashboardLayout />
-            <div className="w-full h-full p-10 ">
-              <div>{children}</div>
+      <>
+        <PageProgres />
+        <main className="bg-[#e3e0e0] h-screen">
+          <AuthContext.Provider value={values}>
+            <DashboardNavbar />
+            <div className="flex flex-1 h-full bg-[#E3E1E1]">
+              <DashboardLayout />
+              <div className="w-full h-full p-10 ">
+                <div>{children}</div>
+              </div>
             </div>
-          </div>
-        </AuthContext.Provider>
-      </main>
+          </AuthContext.Provider>
+        </main>
+      </>
     );
   } else {
     return (

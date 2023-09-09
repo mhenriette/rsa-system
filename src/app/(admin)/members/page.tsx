@@ -1,8 +1,8 @@
-import { getMembers } from "@/lib/actions";
 import MemberRow from "@/components/ui/MemberRow";
-import Link from "next/link";
+import { getMembers } from "@/lib/actions";
 import plus from "@/public/plus.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 const page = async () => {
   const members = await getMembers();
@@ -18,13 +18,14 @@ const page = async () => {
         </Link>
       </div>
       <div className="text-black mt-9 bg-white px-5">
-        <div className="grid grid-cols-6 h-16 border-b border-b-gray-800 border-opacity-50 items-center">
+        <div className="grid grid-cols-7 h-16 border-b border-b-gray-800 border-opacity-50 items-center">
           <p className="font-medium">Name</p>
           <p className="font-medium">Unit name</p>
           <p className="font-medium">Address</p>
           <p className="font-medium">District</p>
           <p className="font-medium">Occupation</p>
           <p className="font-medium">Contact</p>
+          <p className="font-medium">Actions</p>
         </div>
         {members.map((member) => (
           <MemberRow key={member.id} member={member} />

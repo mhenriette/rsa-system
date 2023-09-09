@@ -1,7 +1,7 @@
 "use server";
+import * as jose from "jose";
 import { redirect } from "next/navigation";
 import { prisma } from "./db";
-import * as jose from "jose";
 import { sendMailPromise } from "./mailer";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
@@ -109,6 +109,11 @@ export const login = async (formData: any) => {
 export const getMembers = async () => {
   const item = await prisma.member.findMany();
   return [...item];
+};
+
+export const deleteMember = async (memberId: number) => {
+  await prisma.member.delete({ where: { id: memberId } });
+  redirect("/members");
 };
 
 export const getApplicants = async () => {
