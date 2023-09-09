@@ -36,6 +36,36 @@ export const AddNewMember = async (formData: any) => {
   redirect("/members");
 };
 
+export const deactivateMember = async (memberId:number) => {
+  await prisma.member.update({
+    where: { id: memberId },
+    data: {
+      deactivated: true,
+    },
+  });
+  redirect("/members");
+}
+
+export const updateMember = async (formData: any) => {
+  const memberId = Number(formData.get("id"));
+  const member = await prisma.member.update({
+    where: { id: memberId },
+    data: {
+      email: formData.get("email"),
+      First_name: formData.get("first_name"),
+      last_name: formData.get("last_name"),
+      category: formData.get("category"),
+      district: formData.get("district"),
+      address: formData.get("address"),
+      role: formData.get("role"),
+      contact: formData.get("contact"),
+      occupation: formData.get("occupation"),
+    },
+  });
+  redirect("/members");
+};
+
+
 export const login = async (formData: any) => {
   const secret = new TextEncoder().encode("JHDKWJDEJDBWKJ");
   const username = formData.get("username");

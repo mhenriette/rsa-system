@@ -1,8 +1,5 @@
 import MemberRow from "@/components/ui/MemberRow";
 import { getMembers } from "@/lib/actions";
-import plus from "@/public/plus.svg";
-import Image from "next/image";
-import Link from "next/link";
 
 const page = async () => {
   const members = await getMembers();
@@ -21,7 +18,7 @@ const page = async () => {
           <p className="font-medium">Contact</p>
           <p className="font-medium">Actions</p>
         </div>
-        {members.map((member) => (
+        {members.filter(member => !member.deactivated).map((member) => (
           <MemberRow key={member.id} member={member} />
         ))}
       </div>
