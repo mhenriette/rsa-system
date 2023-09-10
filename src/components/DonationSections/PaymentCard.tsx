@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Amount } from "../cards/Amount";
+import { useParams } from "next/navigation";
 
 const PaymentCard = ({ className, donation_id }: any) => {
   // const [step, setStep] = useState(1);
@@ -11,6 +12,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
     email: "",
     message: "",
   });
+  const { id } = useParams();
   // const changeStep = () => {
   //   if (step < 3) {
   //     setStep((prev) => prev + 1);
@@ -33,8 +35,9 @@ const PaymentCard = ({ className, donation_id }: any) => {
         contact,
         amount,
         type: "donation",
-        donation_id,
+        // donation_id,
         ...data,
+        donation_id: id,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +82,6 @@ const PaymentCard = ({ className, donation_id }: any) => {
 
   //   );
   // };
-
 
   return (
     <form
@@ -147,10 +149,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
           value={data.message}
           name="message"
         />
-        <input type="hidden" value="donation" name="type" />
-        {donation_id && (
-          <input type="hidden" value={donation_id} name="donation_id" />
-        )}
+        {/* {id && <input type="hidden" value={id} name="donation_id" />} */}
       </div>
 
       {/* {step === 3 && <Step3 />}  */}

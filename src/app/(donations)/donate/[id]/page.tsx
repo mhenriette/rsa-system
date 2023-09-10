@@ -25,8 +25,8 @@ const Page = () => {
         <PaymentCard />
         <div className="bg-green-600 text-white py-5 rounded-b-md px-3">
           <div className="flex justify-between tex-lg font-medium">
-            <div>{`$ ${donation.paidAmount} RAISED`}</div>
-            <div>{`$ ${donation.target} Goal`}</div>
+            <div>{`$ ${donation?.paidAmount} RAISED`}</div>
+            <div>{`$ ${donation?.target} Goal`}</div>
           </div>
         </div>
       </div>
