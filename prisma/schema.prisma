@@ -149,3 +149,19 @@ model Applicants {
   joined_at     DateTime
   requeste_unit String
 }
+
+ model Payments {
+id Int @id @unique
+name String
+email String
+contact String
+message String
+amount Int
+ref String 
+created_at DateTime
+processed_at DateTime
+type String
+donation_id String?
+status String
+
+ }

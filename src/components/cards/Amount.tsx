@@ -1,9 +1,10 @@
-import React from "react";
-
-export const Amount = ({ amount }: any) => {
+export const Amount = ({ amount, onClick, className }: any) => {
   return (
-    <div className="flex m-2 justify-center items-center py-3 px-10 font-bold text-xl border-theme border rounded-lg">
-      <p>{amount}$</p>
-    </div>
+    <button
+      onClick={onClick}
+      className={`flex my-2 justify-center items-center py-2 px-10- font-bold text-xl border-theme border rounded-lg ${className}`}
+    >
+      <span>{amount}$</span>
+    </button>
   );
 };

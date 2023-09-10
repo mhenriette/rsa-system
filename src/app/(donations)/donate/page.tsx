@@ -7,7 +7,6 @@ import { DonationContext } from "@/store/donationContext";
 
 const Page = () => {
   const { donations }: any = useContext(DonationContext);
-  console.log(donations, "kjdsfbskjfskj");
   return (
     <div className="flex">
       <DonationLayout />
