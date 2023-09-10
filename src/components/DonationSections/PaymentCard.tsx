@@ -79,7 +79,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
 
   //   );
   // };
-  console.log(data, "dataaaa");
+
 
   return (
     <form
