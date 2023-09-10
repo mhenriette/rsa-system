@@ -152,13 +152,13 @@ model Applicants {
 }
 
  model Payments {
-id Int @id  @default(autoincrement())
+id Int  @default(autoincrement())
 name String
 email String
 contact String
 message String
 amount Int
-ref String 
+ref String @id @unique
 created_at DateTime
 processed_at DateTime
 type String
