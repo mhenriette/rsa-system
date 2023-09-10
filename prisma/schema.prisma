@@ -78,6 +78,7 @@ model Member {
   activities Activity[]
   Unit       Unit?      @relation(fields: [unitId], references: [id])
   unitId     Int?
+  deactivated Boolean @default(false)
 }
 
 model Unit {

@@ -10,6 +10,7 @@ const DashboardLayout = () => {
   const items = [
     { href: "/dashboard", icon: AiFillHome, label: "Dashboard" },
     { href: "/members", icon: FaPeopleGroup, label: "Members" },
+    { href: "/applicants", icon: FaPeopleGroup, label: "Applications" },
     { href: "/units", icon: FaPeopleGroup, label: "Units" },
     { href: "/activity", icon: FaPersonDigging, label: "Activities" },
     { href: "/reports", icon: TbReportSearch, label: "Reports" },

@@ -1,8 +1,5 @@
 "use client";
 import { login } from "@/lib/actions";
-import logo from "@/public/Logo.png";
-
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useLocalStorage } from "usehooks-ts";
 const Page = () => {
