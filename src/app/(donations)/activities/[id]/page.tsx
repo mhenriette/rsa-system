@@ -35,7 +35,6 @@ const Page = () => {
       .then((response) => {
         setData({ name: "", email: "", contact: "", address: "" });
         if (response.ok) {
-          console.log("data saved");
           alert(`${data.name} is saved`);
         } else {
           console.error("failed");
