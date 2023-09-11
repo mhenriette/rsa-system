@@ -9,21 +9,31 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [data, setData] = useState([]);
+  const [donation, setDonation] = useState([]);
+  const [activities, setActivities] = useState([]);
   useEffect(() => {
     fetch("/api/donations")
       .then((response) => response.json())
-      .then((data) => setData(data.data))
+      .then((data) => setDonation(data.data))
       .catch((error) => {
-        console.log("Data not found", Error);
-        setData([]);
+        console.log("Data not found", error);
+        setDonation([]);
+      });
+  }, []);
+  useEffect(() => {
+    fetch("/api/activities")
+      .then((response) => response.json())
+      .then((data) => setActivities(data.data))
+      .catch((error) => {
+        console.log("Data not found", error);
+        setActivities([]);
       });
   }, []);
 
-  const donations: any = { donations: data };
+  const data: any = { donations: donation, activities: activities };
   return (
-    <section>
-      <DonationContext.Provider value={donations}>
+    <section className="text-white">
+      <DonationContext.Provider value={data}>
         <DonationNavbar />
         {children}
         <Footer />

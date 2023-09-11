@@ -10,7 +10,7 @@ const Page = () => {
   return (
     <div className="flex">
       <DonationLayout />
-      <div className="bg-[#f2eafa] text-theme flex-grow">
+      <div className="bg-[#f2eafa] text-theme w-[80%] p-4 h-screen overflow-y-scroll donation-scroll ">
         <h1 className="text-3xl font-bold">Explore projects</h1>
         <div className="grid grid-cols-3">
           {donations.map((donation: any) => (

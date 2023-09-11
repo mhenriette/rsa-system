@@ -2,7 +2,7 @@ import React from "react";
 
 const DonationLayout = () => {
   return (
-    <div className="text-white bg-theme h-screen">
+    <div className="text-white bg-theme h-screen w-[20%] p-4">
       <div className=" border border-white px-5 py-2">Search For project</div>
       <div>
         <h1>Status</h1>

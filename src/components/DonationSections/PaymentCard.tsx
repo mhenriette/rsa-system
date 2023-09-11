@@ -7,11 +7,14 @@ const PaymentCard = ({ className, donation_id }: any) => {
   // const [step, setStep] = useState(1);
   const [amount, setAmount] = useState(0);
   const [contact, setContact] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
   const [data, setData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [error, setError] = useState("");
   const { id } = useParams();
   // const changeStep = () => {
   //   if (step < 3) {
@@ -20,7 +23,11 @@ const PaymentCard = ({ className, donation_id }: any) => {
   // };
   const handleAmount = (e: any) => {
     e.preventDefault();
-    setAmount(Number(e.target.value));
+    const amountValue = e.target.value;
+    setAmount(Number(amountValue));
+    if (amountValue < 400) {
+      setError("Amount must be above 400");
+    } else setError("");
   };
   const handleContact = (e: any) => {
     e.preventDefault();
@@ -28,6 +35,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
   };
 
   const handleSubmit = (e: any) => {
+    setLoading(true);
     e.preventDefault();
     fetch("/api/payment", {
       method: "POST",
@@ -44,15 +52,19 @@ const PaymentCard = ({ className, donation_id }: any) => {
       },
     })
       .then((response) => {
+        console.log(response, "responseee");
         if (response.ok) {
           console.log("Payment successful");
+          setStatus("payment successful");
         } else {
           console.error("Payment failed");
+          setStatus("payment failed");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-      });
+      })
+      .finally(() => setLoading(false));
   };
   const handleData = (e: any) => {
     const { name, value } = e.target;
@@ -95,7 +107,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
       </h1>
       <div className="">
         <div className="grid grid-cols-2 items-start space-x-2- gap-x-2">
-          {[10, 20, 30, 40].map((el) => (
+          {[1000, 2000, 3000, 4000].map((el) => (
             <Amount
               className={`${amount === el && "bg-green-700 text-white"}`}
               amount={el}
@@ -108,10 +120,11 @@ const PaymentCard = ({ className, donation_id }: any) => {
           ))}
         </div>
         <input
-          placeholder="Enter Custom Amount"
+          placeholder="Enter Custom Amount in Rwf"
           className="border border-theme rounded-lg p-2 w-full"
           onChange={handleAmount}
         />
+        {/* { && <p className="text-red-900 text-sm text-center">{error}</p>} */}
       </div>
       {/* </> */}
       {/* )} */}
@@ -126,6 +139,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
           onChange={handleData}
           value={data.name}
           name="name"
+          required
         />
 
         <input
@@ -134,6 +148,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
           value={contact}
           onChange={handleContact}
           className="py-2 border-theme border w-full my-3 rounded-md px-2 outline-none"
+          required
         />
         <input
           placeholder="email"
@@ -141,6 +156,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
           onChange={handleData}
           value={data.email}
           name="email"
+          required
         />
         <input
           placeholder="Your message"
@@ -148,6 +164,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
           onChange={handleData}
           value={data.message}
           name="message"
+          required
         />
         {/* {id && <input type="hidden" value={id} name="donation_id" />} */}
       </div>
@@ -158,9 +175,10 @@ const PaymentCard = ({ className, donation_id }: any) => {
           type="submit"
           className="py-2 bg-green-700 text-white border w-full my-3 rounded-md px-2 outline-none"
         >
-          Make payment
+          {loading ? "Payment loading..." : "Make payment"}
         </button>
       </div>
+      {status.length > 0 && <h1>{status}</h1>}
       {/* <button
         className="bg-theme rounded-md py-3 px-10 w-full m-4 text-white"
         onClick={changeStep}

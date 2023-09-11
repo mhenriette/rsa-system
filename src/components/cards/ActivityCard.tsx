@@ -44,13 +44,15 @@ const ActivityCard = async ({
               alt="about"
               src={activityImg}
             />
-            <span className="text-xl text-center font-bold">SCOUNT CAMP</span>
+            <span className="text-sm text-center font-bold">
+              SCOUT ACTIVITY
+            </span>
           </div>
           <div className="flex-1">
             <h1 className="font-bold text-lg">{name}</h1>
             <p>Venue: {venue}</p>
             <p>Date: {formatDate}</p>
-            <p>{description}</p>
+            <p className="line-clamp-3">{description}</p>
             <p>{`Created by:${admin_id}`}</p>
             {districtManagerId && <p>{`Created by:${districtManagerId}`}</p>}
             {unitLeaderId && <p>{`Created by:${unitLeaderId}`}</p>}

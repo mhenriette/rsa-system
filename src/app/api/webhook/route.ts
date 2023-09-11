@@ -38,7 +38,6 @@ export async function POST(req: Request, res: Response) {
     console.log(payment, "paymenttt")
 console.log(newAmount , "new amount")
 
-
   }
 
 

@@ -12,7 +12,7 @@ const DonationNavbar = () => {
           Home
         </Link>
         <Link href="/donate">Explore Projects</Link>
-        <Link href="#">View Activities</Link>
+        <Link href="/activities">View Activities</Link>
       </div>
     </div>
   );

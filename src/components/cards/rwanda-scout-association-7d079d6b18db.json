@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "rwanda-scout-association",
+  "private_key_id": "7d079d6b18db504f12d4543b2c2a27ce0f0121dd",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHfpSpdlsWay0I\nT7mW51fu8553cUQYJbrhR/7gOawXmXXTvus1UKzOZ2jXqJegCAwzlA8M13In0gKk\nI3DoCxbBUiEPPfMt2B2yXGppunIel2T/7ktfxEY4zp1zWo/DOmUjwfvP8zi2i7WJ\nkQMHgHI6uW5/nAss0gIyVDay6dr/HukZOGK49emHZYz212od+ppgGgE55rlQjibS\nwS1opzIUyGf6eUv6oGdTjeH1DnvoIp+rZ0RuaL03khiU8bh4o73Ssj8aZ2pPkPR8\nPnhyMo/GKBsKuJGPwZf4zzYmM+dzJc4JL6HynRCuy1O7F+QzgI4xq6ENWBTRmn+H\noRwUfU+PAgMBAAECggEAD//wHAqbh0KaQ9U3vR7Ed9bUdJ+XcVkD/NHMOHSM/6mL\nAIFf65CTA3eEukMnF1UokVxvET3C8JGl15SQwh4y5Cyvl8GFXD293VJkeyKnyMSl\n+5FuPHnek0DIR6T8Qbv7D5vyaRJd5TodmbERLUwDx/+bmU13vKUCkGxzpJ7Kix/D\nBpVoFFYYwffoXKXdvMlnVlcvBslOvAcXHSBxDkzTbbQFC+IYfr6x79S4OJoD0utk\nVjhu3eP8lTdpGZDqwxdcGayGM8M7gQJ5RCLtbLEIGJHNwWI+8ysXQGoqXnCvFe05\n74xQvK2PqTug/cKuRxiGGFglVESpUEob/98ro2jAoQKBgQDyGbDklpOcXPmM7XoE\nXGXiwL8QymV0CoRiofizAvlCRJZIP6LaC26aSNh3VrBrLtXxW1WetwZoAgbZVBl0\n80c0BdkJn3jNu46iqlWYpXVHVTAl3x29PR1tL2ObMe7dMXNe9o1p2OMKpQG2uoNj\nnnv3QvI24GZIsz77V93Y8TLrIQKBgQDS8q7Byh9cQLyfb6yWursluUoaGpiuKLfl\nHt+STKanA7pWvQfUVW7DIySGjSWexjZFuu4c7f9RR04jxuEYhbywMa97rqKitAJW\nsXRtKt8YKXFIEJDFmATmCB+g3dzqkZ9ZLL5O0D24htCK9Fa13BRijIYctPHZpQeb\nwrRj/lAUrwKBgCE8X6lx9n+/z86GB3szyBTyCwjeEEF29CeqPr8siFWNnuf6PHwc\nl6l8mKMBdqSwQFSrCj0IuUtsA86wGfKRN1Qv/VSx3N65geJY6flTtZ7+VebNE4MY\nMcL8f3sdxsH8+O6vgEhoqvqaHnscbc8uQax3N1NLSR9v5BSTQnR24FuhAoGAHb9v\neZChX4cZknpTImZu4eEBXDEH+vdvB3aVHLKGheL2siiyI/VwS0B3dCoPdhaJrMex\nsI63hKTDljQDpkul0ksPbiewc7Vi5wrbWlHDaErf2MPNRrArcK0QmMTw1Ht4t0Ci\nDcc8DPumCRJv7/F7RnJ+rymtOX4WVpbcjYVdka0CgYEAk4rDnOeqfPiiGTbUOBTG\nkgQEr4hXXDuz4zoW9cRMugkoEcbGz23kGebzFQdOf1GY2WgJygl6qlY8dUPjnS0G\n5L4PZ/dvD6MMIYhbTLpROfTtIvRUGuc7CubjrzCZTZVn3UJz1Wz0qDQSCm+swfJy\nvWLmfwUKwhxqw/hAv5QHSB0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "activities@rwanda-scout-association.iam.gserviceaccount.com",
+  "client_id": "112825540189370257366",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/activities%40rwanda-scout-association.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -9,7 +9,7 @@ export async function POST(req: Request, res: Response) {
     const cashinResult:any = await PayPack.cashin({
       number: contact,
       amount: Number(amount), 
-      environment: "development",
+      environment: process.env.NODE_ENV,
     });
     const payment = await prisma.payments.create({
       data:{
