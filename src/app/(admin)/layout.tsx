@@ -53,25 +53,29 @@ const Layout = ({ children }: { children: ReactElement }) => {
 
   if (token && !loading && authUser) {
     const values: any = { token: token, user: authUser };
+    const datee = new Date();
     return (
       <>
         <PageProgres />
-        <main className="bg-[#e3e0e0] h-screen">
+        <main className="h-screen flex flex-col bg-theme pr-5">
           <AuthContext.Provider value={values}>
             <DashboardNavbar />
-            <div className="flex flex-1 h-full bg-[#E3E1E1]">
+            <div className="flex flex-1 overflow-hidden">
               <DashboardLayout />
-              <div className="w-full h-full p-10 ">
-                <div>{children}</div>
+              <div className="w-full p-10 bg-light rounded-md overflow-y-scroll dashboard ">
+                <div className="text-theme">{children}</div>
               </div>
             </div>
+            <footer className="bg-theme py-3 text-sm text-center text-white font-bold">
+              © Munezero {datee.getFullYear() - 4} -{datee.getFullYear()}
+            </footer>
           </AuthContext.Provider>
         </main>
       </>
     );
   } else {
     return (
-      <div className="flex w-full h-screen items-center justify-center">
+      <div className="flex w-full h-screen items-center justify-center bg-light">
         <BiLoader className="text-[40px] animate-spin" />
       </div>
     );

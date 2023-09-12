@@ -22,7 +22,6 @@ const transport = nodemailer.createTransport({
 
 
 export const sendMailPromise = (email:string, subject:string, message:string) =>{
-  console.log(email, message, subject);
   const mailOptions: Mail.Options = {
     from: process.env.MAIL_ADDRESS,
     to: email,

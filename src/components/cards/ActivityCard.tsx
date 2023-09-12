@@ -32,7 +32,7 @@ const ActivityCard = async ({
   const formatDate = formatDateToDdMmYyyy(date);
 
   return (
-    <div className="bg-[#EAEAEA] shadow-activity-shadow border-solid border">
+    <div className="bg-light shadow-activity-shadow border-solid border">
       <div className="py-10 px-16 rounded-lg">
         <div className="flex flex-col md:flex-row flex-1 items-center gap-8">
           <div className="flex flex-col gap-3">

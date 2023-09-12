@@ -74,6 +74,8 @@ model Member {
   district   String
   address    String
   role       String
+  age        String @default("4")
+  gender     String @default("female")
   occupation String
   activities Activity[]
   Unit       Unit?      @relation(fields: [unitId], references: [id])

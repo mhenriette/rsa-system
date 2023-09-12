@@ -12,7 +12,7 @@ const UnitCard = async ({
 }: UnitCardProps) => {
 
   return (
-    <div className="bg-[#EAEAEA] shadow-activity-shadow border-solid border">
+    <div className="bg-light shadow-activity-shadow border-solid border">
       <div className="min-w-[200px] aspect-square grid justify-center rounded-lg py-2">
         <div className="flex flex-col md:flex-row flex-1 w-full items-center gap-8">
           <div className="flex flex-col gap-3">
@@ -25,7 +25,9 @@ const UnitCard = async ({
               src={activityImg}
             />
             <span className="text-xl text-center font-bold">{name}</span>
-            <span className="text-center -mt-4 text-sm text-slate-600">{district}</span>
+            <span className="text-center -mt-4 text-sm text-slate-600">
+              {district}
+            </span>
           </div>
         </div>
       </div>

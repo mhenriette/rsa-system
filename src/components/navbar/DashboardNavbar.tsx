@@ -11,7 +11,7 @@ const DashboardNavbar = () => {
   };
   const userInfo: any = useContext(AuthContext);
   return (
-    <div className="flex justify-between px-5 py-3 items-center text-white bg-purple-900">
+    <div className="flex justify-between px-5 py-4 items-center text-white bg-theme">
       <Link className="flex gap-3 items-center space-x-2" href="/">
         <Image src={logo} width={32} height={32} alt="logo" />
         <p className="text-white font-semibold">RSA</p>
@@ -28,14 +28,23 @@ const DashboardNavbar = () => {
             <FaUserAlt className="text-2xl" />
           </Link>
           {open && (
-            <div className="absolute text-gray-800 transform translate-y-2 gap-2 w-max shadow bg-gray-100 flex flex-col rounded p-5">
-              <Link onClick={() => setOpen(false)} href={"new-admin?type=hqadmin"}>
+            <div className="absolute text-theme top-8 transform translate-y-2 gap-2 w-max shadow bg-gray-100 flex flex-col rounded p-5">
+              <Link
+                onClick={() => setOpen(false)}
+                href={"new-admin?type=hqadmin"}
+              >
                 Hq admin
               </Link>
-              <Link onClick={() => setOpen(false)} href={"new-admin?type=districtmanager"}>
+              <Link
+                onClick={() => setOpen(false)}
+                href={"new-admin?type=districtmanager"}
+              >
                 District manager
               </Link>
-              <Link onClick={() => setOpen(false)} href={"new-admin?type=unitleader"}>
+              <Link
+                onClick={() => setOpen(false)}
+                href={"new-admin?type=unitleader"}
+              >
                 Unit leader
               </Link>
             </div>

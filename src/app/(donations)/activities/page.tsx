@@ -8,7 +8,6 @@ import ActivityView from "@/components/activities/ActivityView";
 
 const Page = () => {
   const { activities }: any = useContext(DonationContext);
-  console.log(activities, "activittiess");
   if (!activities) return <h1>Loading....</h1>;
   return (
     <div className="flex bg-light px-32 py-20 flex-col gap-5">

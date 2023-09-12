@@ -5,7 +5,6 @@ import { useLocalStorage } from "usehooks-ts";
 const Page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [_, setUser] = useLocalStorage("token", "");
-  // const router = useRouter();
 
   async function onLogin(formData: FormData) {
     const res = await login(formData);

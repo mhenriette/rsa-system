@@ -6,8 +6,6 @@ import FemaleMembers from "@/components/ui/FemaleMember";
 import MaleMembers from "@/components/ui/MaleMember";
 import Members from "@/components/ui/Members";
 import { getApplicants, getFundings, getMembers } from "@/lib/actions";
-import { AuthContext } from "@/store/authContext";
-import { useContext } from "react";
 const DashboardPage = async () => {
   const members = await getMembers();
   const applicants = await getApplicants();

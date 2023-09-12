@@ -24,4 +24,15 @@
       .donation-scroll::-webkit-scrollbar-track {
         background-color: #f2eafa;
       }
+      .dashboard::-webkit-scrollbar{
+        background-color: #f2eafa;
+      }
+      
+      .dashboard::-webkit-scrollbar-thumb{
+        background-color: #f2eafa;
+      }
+      
+      .dashboard::-webkit-scrollbar-track {
+        background-color: #f2eafa;
+      }
 }

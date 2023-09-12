@@ -14,8 +14,6 @@ interface NewFundingFormProps {
 const NewFundingForm = ({ close, showDialog }: NewFundingFormProps) => {
   const { pending } = useFormStatus();
   const { user }: any = useContext(AuthContext);
-
-  console.log(user, "aiuthjhh");
   return (
     <DialogOverlay isOpen={showDialog} onDismiss={close}>
       <DialogContent

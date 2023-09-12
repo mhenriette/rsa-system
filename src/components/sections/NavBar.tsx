@@ -4,8 +4,8 @@ import { Dialog, DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { redirect, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useReadLocalStorage } from "usehooks-ts";
 import scoutslogo from "../../../public/scouts.svg";
 
@@ -15,8 +15,23 @@ const NavBar = () => {
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
   const router = useRouter();
-  const token = useReadLocalStorage("token");
-  const isLoggedIn = Boolean(token);
+  const token: any = useReadLocalStorage("token");
+  const [isMounted, setIsMounted] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) {
+    return null;
+  }
+  const handleRedirect = () => {
+    // setLoading(true);
+    router.push("/dashboard");
+    // setLoading(false);
+  };
+  // if (loading) {
+  //   return <h1 className="">Laoding...</h1>;
+  // }
   return (
     <>
       <DialogOverlay
@@ -64,11 +79,11 @@ const NavBar = () => {
           >
             Get your Membership id
           </button>
-          {isLoggedIn && <Link href="/dashboard">Dashboard</Link>}
-          {!isLoggedIn && (
+          {token && <button onClick={handleRedirect}>Dashboard</button>}
+          {!token && (
             <Link
               href="/sign-in"
-              className="border border-theme hover:text-white rounded-lg px-5 py-2.5 hover:bg-theme hover:transition-colors delay-200 ease-in"
+              className="border border-theme text-theme hover:text-white rounded-lg px-5 py-2.5 hover:bg-theme hover:transition-colors delay-200 ease-in"
             >
               Login
             </Link>

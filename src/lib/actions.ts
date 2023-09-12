@@ -5,7 +5,6 @@ import { prisma } from "./db";
 import { sendMailPromise } from "./mailer";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
-  console.log("working============================")
   const user = await prisma.member.create({
     data: {
       email: formData.get("email"),

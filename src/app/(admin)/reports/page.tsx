@@ -7,7 +7,6 @@ import { AuthContext } from "@/store/authContext";
 const Page = () => {
   // const reports = await getReports()
   const authUser = useContext(AuthContext);
-  console.log(authUser, "00000");
   return (
     <div className="p-3 pt-16">
       <ReportsTitle />
