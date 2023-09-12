@@ -11,6 +11,7 @@ export async function POST(req: Request, res: Response) {
       amount: Number(amount), 
       environment: process.env.NODE_ENV,
     });
+    console.log(process.env.NODE_ENV, "node envvvvvv")
     const payment = await prisma.payments.create({
       data:{
       name,

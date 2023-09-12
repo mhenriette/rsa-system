@@ -52,7 +52,6 @@ const PaymentCard = ({ className, donation_id }: any) => {
       },
     })
       .then((response) => {
-        console.log(response, "responseee");
         if (response.ok) {
           console.log("Payment successful");
           setStatus("payment successful");
@@ -178,7 +177,7 @@ const PaymentCard = ({ className, donation_id }: any) => {
           {loading ? "Payment loading..." : "Make payment"}
         </button>
       </div>
-      {status.length > 0 && <h1>{status}</h1>}
+      {/* {status.length > 0 && <h1>{status}</h1>} */}
       {/* <button
         className="bg-theme rounded-md py-3 px-10 w-full m-4 text-white"
         onClick={changeStep}

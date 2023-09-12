@@ -9,7 +9,7 @@ const Gift = () => {
           today!
         </h1>
       </div>
-      <div className="flex-1 gap-5 flex flex-col text-lg">
+      <div className="flex-1 gap-5 flex flex-col text-lg text-theme">
         <p>
           We believe that lasting positive change in the world happens when we
           empower young people to lead positive action in their communities –
