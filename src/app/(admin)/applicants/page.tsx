@@ -4,7 +4,6 @@ import { getApplicants, getMembers } from "@/lib/actions";
 const page = async () => {
   const members = await getMembers();
   const applicants = await getApplicants();
-  console.log(applicants);
   return (
     <div className="p-3 pt-16">
       <div className="flex justify-between items-center">

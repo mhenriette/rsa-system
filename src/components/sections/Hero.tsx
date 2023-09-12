@@ -18,7 +18,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-5 items-center justify-start mt-8 uppercase">
               <Link
                 className="bg-[#429239] text-white text-[15px] py-4 px-8 text-center font-bold hover:transition-opacity ease-out hover:bg-opacity-80"
-                href="#"
+                href="/donations"
               >
                 Donate a project
               </Link>

@@ -17,7 +17,7 @@ const DashboardLayout = () => {
     { href: "/donation", icon: AiFillFund, label: "Donations" },
     { href: "/messages", icon: BiSolidMessageSquare, label: "Messages" },
     { href: "#", icon: CgWebsite, label: "Website" },
-    { href: "#", icon: CgWebsite, label: "Gallery" },
+    // { href: "#", icon: CgWebsite, label: "Gallery" },
   ];
 
   const pathname = usePathname();
