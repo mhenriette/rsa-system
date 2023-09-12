@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import PayPack from "../../../lib/payment"
 import { prisma } from "@/lib/db";
+import dotenv from "dotenv"
+dotenv.config()
 
 
 export async function POST(req: Request, res: Response) {
@@ -11,7 +13,6 @@ export async function POST(req: Request, res: Response) {
       amount: Number(amount), 
       environment: process.env.NODE_ENV,
     });
-    console.log(process.env.NODE_ENV, "node envvvvvv")
     const payment = await prisma.payments.create({
       data:{
       name,
