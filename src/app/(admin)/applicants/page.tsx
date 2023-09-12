@@ -3,7 +3,6 @@ import { getApplicants, getMembers } from "@/lib/actions";
 
 const page = async () => {
   const applicants = await getApplicants();
-  // console.log(appl)
   return (
     <div className="p-3 pt-16">
       <div className="flex justify-between items-center">
