@@ -61,26 +61,26 @@ model UnitLeader {
 }
 
 model Member {
-  id         Int        @id @default(autoincrement())
-  email      String
-  First_name String
-  last_name  String
-  member_id  String     @default(uuid())
-  contact    String
-  category   String
-  hasCard    Boolean
-  joined_at  DateTime   @default(now())
-  unit_name  String
-  district   String
-  address    String
-  role       String
-  age        String @default("4")
-  gender     String @default("female")
-  occupation String
-  activities Activity[]
-  Unit       Unit?      @relation(fields: [unitId], references: [id])
-  unitId     Int?
-  deactivated Boolean @default(false)
+  id          Int        @id @default(autoincrement())
+  email       String
+  First_name  String
+  last_name   String
+  member_id   String     @default(uuid())
+  contact     String
+  category    String
+  hasCard     Boolean
+  joined_at   DateTime   @default(now())
+  unit_name   String
+  district    String
+  address     String
+  role        String
+  age         String     @default("4")
+  gender      String     @default("female")
+  occupation  String
+  activities  Activity[]
+  Unit        Unit?      @relation(fields: [unitId], references: [id])
+  unitId      Int?
+  deactivated Boolean    @default(false)
 }
 
 model Unit {
@@ -88,8 +88,8 @@ model Unit {
   username          String
   districtManager   DistrictManager @relation(fields: [districtManagerId], references: [id])
   districtManagerId Int
-  UnitLeader        UnitLeader?      @relation(fields: [unitLeaderId], references: [id])
-  unitLeaderId      Int?             @unique
+  UnitLeader        UnitLeader?     @relation(fields: [unitLeaderId], references: [id])
+  unitLeaderId      Int?            @unique
   district          String
   HqAdmin           HqAdmin?
   hqAdminId         Int
@@ -97,14 +97,14 @@ model Unit {
 }
 
 model Activity {
-  id                String            @id @default(uuid())
+  id                String           @id @default(uuid())
   name              String
   date              DateTime
   venue             String
   description       String
   created_at        DateTime
   members           Member[]
-  admin_id          Int             
+  admin_id          Int
   admin             HqAdmin          @relation(fields: [admin_id], references: [id])
   DistrictManager   DistrictManager? @relation(fields: [districtManagerId], references: [id])
   districtManagerId Int?
@@ -153,18 +153,17 @@ model Applicants {
   requeste_unit String
 }
 
- model Payments {
-id Int  @default(autoincrement())
-name String
-email String
-contact String
-message String
-amount Int
-ref String @id @unique
-created_at DateTime
-processed_at DateTime
-type String
-donation_id String?
-status String
-
- }
+model Payments {
+  id           Int      @default(autoincrement())
+  name         String
+  email        String
+  contact      String
+  message      String
+  amount       Int
+  ref          String   @id @unique
+  created_at   DateTime
+  processed_at DateTime
+  type         String
+  donation_id  String?
+  status       String
+}

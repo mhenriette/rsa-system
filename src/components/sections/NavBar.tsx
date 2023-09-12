@@ -47,7 +47,10 @@ const NavBar = () => {
       >
         <Dialog isOpen={showDialog} onDismiss={close}>
           <div className="flex flex-col gap-4">
-            <button className="close-button bg-red-500 p-4" onClick={close}>
+            <button
+              className="close-button bg-theme text-white text-lg font-bold p-4"
+              onClick={close}
+            >
               <span aria-hidden>Close</span>
             </button>
             <div className="flex flex-col gap-3">
@@ -59,7 +62,7 @@ const NavBar = () => {
                 onChange={(e) => setMemberId(e.target.value)}
               />
               <button
-                className="close-button bg-red-500 p-4"
+                className="close-button bg-theme text-white text-lg font-bold p-4"
                 onClick={() => {
                   router.push(`/membershipCard/${memberId}`);
                 }}
