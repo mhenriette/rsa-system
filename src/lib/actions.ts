@@ -5,6 +5,7 @@ import { prisma } from "./db";
 import { sendMailPromise } from "./mailer";
 const date = new Date();
 export const AddNewMember = async (formData: any) => {
+  console.log(formData, "form data")
   const user = await prisma.member.create({
     data: {
       email: formData.get("email"),
@@ -19,9 +20,10 @@ export const AddNewMember = async (formData: any) => {
       role: formData.get("role"),
       contact: formData.get("contact"),
       occupation: formData.get("occupation"),
+      gender: formData.get('gender'),
+      age: formData.get('age')
     },
     include: {
-      // payment: true,
       activities: true,
     },
     
@@ -59,6 +61,7 @@ export const updateMember = async (formData: any) => {
       role: formData.get("role"),
       contact: formData.get("contact"),
       occupation: formData.get("occupation"),
+      gender: formData.get("gender")
     },
   });
   redirect("/members");
@@ -142,7 +145,14 @@ export const getMembers = async () => {
   const item = await prisma.member.findMany();
   return [...item];
 };
-
+// export const getFemale = async () => {
+//   const female = await prisma.member.findMany({
+//     where:{
+//       gender: "female"
+//     }
+//   })
+//   return [...female]
+// }
 export const deleteMember = async (memberId: number) => {
   await prisma.member.delete({ where: { id: memberId } });
   redirect("/members");
@@ -182,6 +192,7 @@ export const addApplicant = async (formData: any) => {
   });
   await sendMailPromise(applicant.email, "Rwanda scouts association application status",
   "Your application for membership has been received. You will be contacted soon for further information");
+  redirect("/")
 };
 
 export const addNewFunding = async (formData: any) => {
@@ -337,3 +348,11 @@ export const addNewUnit = async (formData: any) => {
   });
   redirect("/dashboard");
 };
+export const getDonaters =async () => {
+  const donators = await prisma.payments.findMany({
+    where:{
+      status:"successful"
+    }
+  })
+  return [...donators]
+}

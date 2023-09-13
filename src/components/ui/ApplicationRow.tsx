@@ -3,6 +3,7 @@
 import { AddNewMember } from "@/lib/actions";
 
 export default function ApplicationRow({ applicant }: any) {
+  console.log(applicant, "applicants");
   const applicantAge = Number(applicant.age);
   const findCategory = (age: any) => {
     if (age >= 4 && age <= 6) {
@@ -42,14 +43,15 @@ export default function ApplicationRow({ applicant }: any) {
             name="unit_name"
             value={applicant.requeste_unit}
           />
-          <input type="hidden" name="category" value={"Explorers"} />
           <input type="hidden" name="district" value={applicant.district} />
           <input type="hidden" name="address" value={applicant.address} />
-          <input type="hidden" name="role" value={"role"} />
+          <input type="hidden" name="role" value={"member"} />
           <input type="hidden" name="contact" value={applicant.contact} />
           <input type="hidden" name="occupation" value={applicant.occupation} />
           <input type="hidden" name="gender" value={applicant.gender} />
           <input type="hidden" name="category" value={category} />
+          <input type="hidden" name="age" value={applicant.age} />
+
           <button
             className="py-1 px-3 bg-green-400 text-white rounded-full"
             type="submit"

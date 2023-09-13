@@ -1,34 +1,100 @@
-// "use client";
+"use client";
 import Applicants from "@/components/sections/Applicants";
 import Fundings from "@/components/sections/Fundings";
-import Reports from "@/components/sections/Reports";
 import FemaleMembers from "@/components/ui/FemaleMember";
 import MaleMembers from "@/components/ui/MaleMember";
 import Members from "@/components/ui/Members";
-import { getApplicants, getFundings, getMembers } from "@/lib/actions";
-const DashboardPage = async () => {
-  const members = await getMembers();
-  const applicants = await getApplicants();
-  const fundings = await getFundings();
-  // const user = useContext(AuthContext);
+import { HiDownload } from "react-icons/hi";
+import { getApplicants, getDonaters, getMembers } from "@/lib/actions";
+import { useEffect, useRef, useState } from "react";
+import Loader from "@/components/ui/Loader";
+import ReactToPdf from "react-to-pdf";
+import Resolution from "react-to-pdf";
+import margin from "react-to-pdf";
+const DashboardPage = () => {
+  const [applicants, setApplicants] = useState([]);
+  const [donations, setDonations] = useState([]);
+  const [members, setMembers] = useState([]);
+
+  // const members = await getMembers();
+  // const applicants = await getApplicants();
+  // const donations = await getDonaters();
+  // const female = members.filter((member) => member.gender === "female");
+  // const male = members.filter((member: any) => member.gender === "male");
+  // const printDonaters = () => {};
+  // const ref = useRef<HTMLDivElement>(null);
+  // const options = {
+  //   orientation: "landscape",
+  //   unit: "in",
+  //   format: [7, 5],
+  // };
+  useEffect(() => {
+    fetch("api/applicants")
+      .then((response) => response.json())
+      .then((data) => setApplicants(data.data));
+  }, []);
+  useEffect(() => {
+    fetch("api/members")
+      .then((response) => response.json())
+      .then((members) => setMembers(members.data));
+  }, []);
+
+  useEffect(() => {
+    fetch("api/donators")
+      .then((response) => response.json())
+      .then((donators) => setDonations(donators.data));
+  }, []);
+
+  const female = members.filter((member: any) => member.gender === "female");
+  const male = members.filter((member: any) => member.gender === "male");
+  const ref = useRef<HTMLDivElement>(null);
+  const options = {
+    orientation: "portrait",
+    unit: "in",
+    format: "letter",
+    // resolution: Resolution.,
+    // format: 'letter',
+  };
+
   return (
     <div className="p-5">
       <div className="flex gap-x-3 items-center">
         <Members total={members.length} />
-        <FemaleMembers total={members.slice(0, 7).length} />
-        <MaleMembers total={members.slice(7).length} />
+        <FemaleMembers total={female.length} />
+        <MaleMembers total={male.length} />
       </div>
       <div className="mt-5">
         <h2 className="capitalize mb-4 font-semibold text-base">
-          New applications
+          Pending applications
         </h2>
-        <Applicants applicants={applicants} />
+        {applicants.length ? (
+          <Applicants applicants={applicants} />
+        ) : (
+          <Loader />
+        )}
       </div>
-      <div className="mt-5 flex gap-2">
-        <div className="flex-[3]">
-          <h2 className="italic font-medium text-sm">Latest funding request</h2>
-          {/* <Fundings fundings={fundings} /> */}
+      <div className="mt-5 flex gap-2 flex-col">
+        <div className="flex-[3]" ref={ref}>
+          <h2 className="font-semibold font-medium- text-md my-3">
+            Latest Donations
+          </h2>
+          {donations.length ? <Fundings fundings={donations} /> : <Loader />}
         </div>
+        <ReactToPdf
+          targetRef={ref}
+          filename={`donations.pdf`}
+          options={options}
+        >
+          {({ toPdf }: { toPdf: any }) => (
+            <button
+              className="px-10 py-3 text-white font-bold text-md gap-3 rounded-md bg-theme self-start flex items-center"
+              onClick={toPdf}
+            >
+              Get Document
+              <HiDownload className="text-md font-bold" />
+            </button>
+          )}
+        </ReactToPdf>
       </div>
     </div>
   );
