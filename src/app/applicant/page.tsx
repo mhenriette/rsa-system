@@ -83,7 +83,7 @@ const page = (): ReactElement => {
           title="Occupation cannot be empty or contain only spaces"
           required
         />
-        <InputField type="date" placeholder="Enter Your age" label="age" name="age" required />
+        <InputField type="number" placeholder="Enter Your age" label="age" name="age" required />
         <InputField
           placeholder="Describe the reason why you want to Join Scout Association"
           label="Reason"
