@@ -7,8 +7,8 @@ import { ReactElement } from "react";
 
 const page = (): ReactElement => {
   return (
-    <div className="p-3 w-full px-28 py-16">
-      <h1 className="font-medium text-2xl text-[#5F8D4E]">
+    <div className="p-3 w-full px-28 py-16 bg-white ">
+      <h1 className="font-medium- text-2xl text-theme text-xl- font-bold">
         Apply to join scouts
       </h1>
       <div className="flex justify-end">
@@ -18,7 +18,7 @@ const page = (): ReactElement => {
       </div>
       <form
         action={addApplicant}
-        className="grid md:grid-cols-2 grid-cols-1 md:gap-x-28 gap-y-4 w-full mt-8"
+        className="grid md:grid-cols-2 bg-light grid-cols-1 md:gap-x-28 gap-y-4  p-10 rounded-md w-full mt-8"
       >
         <InputField
           placeholder="First name"
@@ -64,7 +64,12 @@ const page = (): ReactElement => {
           label="Occupation"
           name="occupation"
         />
-        <InputField placeholder="Enter Your age" label="age" name="age" />
+        <InputField
+          placeholder="Date of Birth"
+          label="Date of Birth"
+          name="age"
+          type="date"
+        />
         <InputField
           placeholder="Describe the reason why you want to Join Scout Association"
           label="Reason"
@@ -73,7 +78,7 @@ const page = (): ReactElement => {
         <div className="col-span-2 flex justify-center mt-16">
           <button
             type="submit"
-            className="bg-[#5F8D4E] px-5 py-4 rounded font-medium text-white uppercase"
+            className="bg-theme px-5 py-4 rounded font-medium text-white uppercase"
           >
             Confirm
           </button>

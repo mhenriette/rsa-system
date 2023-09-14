@@ -11,6 +11,7 @@ import Loader from "@/components/ui/Loader";
 import ReactToPdf from "react-to-pdf";
 import Resolution from "react-to-pdf";
 import margin from "react-to-pdf";
+import Link from "next/link";
 const DashboardPage = () => {
   const [applicants, setApplicants] = useState([]);
   const [donations, setDonations] = useState([]);
@@ -95,6 +96,26 @@ const DashboardPage = () => {
             </button>
           )}
         </ReactToPdf>
+        <div className="flex justify-between items-center">
+          <Link
+            className="px-10 py-3 text-white font-bold text-md gap-3 rounded-md bg-theme self-start flex items-center"
+            href={`/membersReport`}
+          >
+            Members
+            <HiDownload className="text-md font-bold" />
+          </Link>
+          <Link
+            className="px-10 py-3 text-white font-bold text-md gap-3 rounded-md bg-theme self-start flex items-center"
+            href="/donationReports"
+          >
+            Donations
+            <HiDownload className="text-md font-bold" />
+          </Link>
+          <button className="px-10 py-3 text-white font-bold text-md gap-3 rounded-md bg-theme self-start flex items-center">
+            Applicants
+            <HiDownload className="text-md font-bold" />
+          </button>
+        </div>
       </div>
     </div>
   );
