@@ -64,12 +64,7 @@ const page = (): ReactElement => {
           label="Occupation"
           name="occupation"
         />
-        <InputField
-          placeholder="Date of Birth"
-          label="Date of Birth"
-          name="age"
-          type="date"
-        />
+        <InputField placeholder="Enter Your age" label="age" name="age" />
         <InputField
           placeholder="Describe the reason why you want to Join Scout Association"
           label="Reason"
