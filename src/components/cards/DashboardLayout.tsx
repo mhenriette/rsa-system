@@ -26,6 +26,11 @@ const DashboardLayout = () => {
     },
     { href: "/activity", icon: FaPersonDigging, label: "Activities" },
     { href: "/units", icon: FaPeopleGroup, label: "Units" },
+    authUser?.user?.role === "hqadmin" && {
+      href: "/reports",
+      icon: TbReportSearch,
+      label: "General Report",
+    },
     // { href: "/reports", icon: TbReportSearch, label: "Reports" },
     // { href: "#", icon: CgWebsite, label: "Gallery" },
   ];
