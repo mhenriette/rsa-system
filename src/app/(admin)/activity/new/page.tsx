@@ -33,13 +33,29 @@ const Page = (): ReactElement => {
         action={addNewActivity}
         className="grid md:grid-cols-2 grid-cols-1 md:gap-x-28 gap-y-4 w-full mt-8"
       >
-        <InputField placeholder="Name" label="Name" name="name" />
-        <InputField placeholder="Date" label="Date" type="date" name="date" />
-        <InputField placeholder="Venue" label="Venue" name="venue" />
+        <InputField placeholder="Name" required label="Name" name="name" />
+        <InputField
+          placeholder="Date"
+          required
+          label="Date"
+          type="date"
+          name="date"
+        />
+        <InputField
+          pattern=".*\S+.*"
+          title="Venue cannot be empty or contain only spaces"
+          placeholder="Venue"
+          required
+          label="Venue"
+          name="venue"
+        />
         <InputField
           placeholder="Description"
           label="description"
           name="description"
+          pattern=".*\S+.*"
+          title="Description cannot be empty or contain only spaces"
+          required
         />
         <InputField type="hidden" name="admin_id" value={user.id} />
         <div className="col-span-2 flex justify-center mt-16">
