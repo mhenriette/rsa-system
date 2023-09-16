@@ -24,51 +24,73 @@ const page = (): ReactElement => {
           placeholder="First name"
           label="First name"
           name="First_name"
+          pattern="[A-Za-z]+"
+          title="Only letters are allowed for first name"
+          required
         />
         <SelectField
           placeholder="Select district"
           label="District"
           name="district"
           options={districts}
+          required
         />
         <InputField
           placeholder="Last name"
           label="Last name"
           name="last_name"
+          pattern="[A-Za-z]+"
+          title="Only letters are allowed for last name"
+          required
         />
         <SelectField
           placeholder="Select gender"
           label="Gender"
           name="gender"
           options={["male", "female"]}
+          required
         />
         <InputField
           placeholder="Phone number"
           label="Phone number"
           name="contact"
+          type="tel"
+          pattern="^\+250\d{9}$"
+          title="provide a valid Rwandan phone number of format: +250xxxxxxxxx"
+          required
         />
         <InputField
           placeholder="Enter your Sector"
           label="Sector"
           name="sector"
+          pattern="[A-Za-z]+"
+          title="Only alphabet letters allowed for sector"
+          required
         />
         <InputField
           placeholder="Email"
           label="Email"
           type="email"
           name="email"
+          required
         />
 
         <InputField
           placeholder="Enter occupation"
           label="Occupation"
           name="occupation"
+          pattern=".*\S+.*"
+          title="Occupation cannot be empty or contain only spaces"
+          required
         />
-        <InputField placeholder="Enter Your age" label="age" name="age" />
+        <InputField type="number" placeholder="Enter Your age" label="age" name="age" required />
         <InputField
           placeholder="Describe the reason why you want to Join Scout Association"
           label="Reason"
           name="reason"
+          pattern=".*\S+.*"
+          title="Reason cannot be empty or contain only spaces"
+          required
         />
         <div className="col-span-2 flex justify-center mt-16">
           <button

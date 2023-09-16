@@ -23,7 +23,14 @@ const page = (): ReactElement => {
         action={addNewUnit}
         className="grid md:grid-cols-2 grid-cols-1 md:gap-x-28 gap-y-4 w-full mt-8"
       >
-        <InputField placeholder="Unit name" label="Name" name="username" required={true} />
+        <InputField
+          pattern=".*\S+.*"
+          title="Unit name cannot be empty or contain only spaces"
+          placeholder="Unit name"
+          label="Name"
+          name="username"
+          required={true}
+        />
         <SelectField
           placeholder="Select district"
           label="District"
@@ -31,7 +38,7 @@ const page = (): ReactElement => {
           options={districts}
           required={true}
         />
-        
+
         <div className="col-span-2 flex justify-center mt-16">
           <button
             type="submit"

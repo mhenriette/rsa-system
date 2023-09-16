@@ -1,4 +1,3 @@
-
 import InputField from "@/components/ui/Input";
 import SelectField from "@/components/ui/SelectField";
 import { districts } from "@/data/districts";
@@ -8,14 +7,14 @@ import { redirect } from "next/navigation";
 
 const page = async ({ params }: { params: { memberId: string } }) => {
   const memberId = params.memberId;
-  const memberInfo:any = await prisma.member.findUnique({
+  const memberInfo: any = await prisma.member.findUnique({
     where: {
       id: Number(memberId),
     },
   });
-  console.log(memberId, memberInfo)
+  console.log(memberId, memberInfo);
   if (!memberInfo) {
-    redirect("/members")
+    redirect("/members");
     return null;
   }
   return (
@@ -41,6 +40,8 @@ const page = async ({ params }: { params: { memberId: string } }) => {
           label="First name"
           name="first_name"
           required={true}
+          pattern="[A-Za-z]+"
+          title="Only letters are allowed for first name"
           defaultValue={memberInfo.First_name}
         />
         <SelectField
@@ -56,6 +57,8 @@ const page = async ({ params }: { params: { memberId: string } }) => {
           label="Last name"
           name="last_name"
           required={true}
+          pattern="[A-Za-z]+"
+          title="Only letters are allowed for last name"
           defaultValue={memberInfo.last_name}
         />
         <SelectField
@@ -78,6 +81,8 @@ const page = async ({ params }: { params: { memberId: string } }) => {
           label="Role"
           name="role"
           required={true}
+          pattern=".*\S+.*"
+          title="Role cannot be empty or contain only spaces"
           defaultValue={memberInfo.role}
         />
         <SelectField
@@ -100,6 +105,9 @@ const page = async ({ params }: { params: { memberId: string } }) => {
           label="Phone number"
           name="contact"
           required={true}
+          type="tel"
+          pattern="^\+250\d{9}$"
+          title="provide a valid Rwandan phone number of format: +250xxxxxxxxx"
           defaultValue={memberInfo.contact}
         />
         {/* <InputField
@@ -122,6 +130,8 @@ const page = async ({ params }: { params: { memberId: string } }) => {
           label="Occupation"
           name="occupation"
           required={true}
+          pattern=".*\S+.*"
+          title="Occupation cannot be empty or contain only spaces"
           defaultValue={memberInfo.occupation}
         />
         <div className="col-span-2 flex justify-center mt-16">
