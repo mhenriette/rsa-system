@@ -76,26 +76,29 @@ const DashboardPage = () => {
       </div>
       <div className="mt-5 flex gap-2 flex-col">
         <div className="flex-[3]" ref={ref}>
-          <h2 className="font-semibold font-medium- text-md my-3">
-            Latest Donations
-          </h2>
+          <div className="flex justify-between items-center my-3">
+            <h2 className="font-semibold font-medium- text-lg my-3">
+              Latest Donations
+            </h2>
+            <ReactToPdf
+              targetRef={ref}
+              filename={`donations.pdf`}
+              options={options}
+            >
+              {({ toPdf }: { toPdf: any }) => (
+                <button
+                  className="px-10 py-2 text-white font-bold text-md gap-3 rounded-md bg-theme self-start flex items-center"
+                  onClick={toPdf}
+                >
+                  Get Document
+                  <HiDownload className="text-md font-bold" />
+                </button>
+              )}
+            </ReactToPdf>
+          </div>
           {donations.length ? <Fundings fundings={donations} /> : <Loader />}
         </div>
-        <ReactToPdf
-          targetRef={ref}
-          filename={`donations.pdf`}
-          options={options}
-        >
-          {({ toPdf }: { toPdf: any }) => (
-            <button
-              className="px-10 py-3 text-white font-bold text-md gap-3 rounded-md bg-theme self-start flex items-center"
-              onClick={toPdf}
-            >
-              Get Document
-              <HiDownload className="text-md font-bold" />
-            </button>
-          )}
-        </ReactToPdf>
+
         <div className="flex justify-between items-center">
           <Link
             className="px-10 py-3 text-white font-bold text-md gap-3 rounded-md bg-theme self-start flex items-center"

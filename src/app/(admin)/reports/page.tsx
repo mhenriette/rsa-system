@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 import logo from "@/public/Logo.png";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Loader from "@/components/ui/Loader";
 import ReactToPdf from "react-to-pdf";
+import { AuthContext } from "@/store/authContext";
 
 const Page = () => {
   const [hq, setHq] = useState([]);
   const [district, setDistrict] = useState([]);
   const [unit, setUnit] = useState([]);
+  // const [authUser, setAuthUser] = useState([]);
+  const { user }: any = useContext(AuthContext);
+
   useEffect(() => {
     fetch("api/unitLeaders")
       .then((response) => response.json())
@@ -38,8 +42,9 @@ const Page = () => {
   const options = {
     orientation: "portrait",
     unit: "in",
-    format: [15, 18],
+    format: [11.5, 22],
   };
+  const date = new Date();
 
   return (
     <div className="mx-28">
@@ -47,7 +52,7 @@ const Page = () => {
         {({ toPdf }: { toPdf: any }) => (
           <button
             onClick={toPdf}
-            className="bg-purple-700 text-white font-bold rounded-md text-center px-10 py-4 hover:bg-purple-500"
+            className="bg-purple-700 text-white font-bold rounded-md text-center px-10 py-4 hover:bg-purple-500 my-3"
           >
             Generate pdf
           </button>
@@ -121,8 +126,15 @@ const Page = () => {
             </table>
           </div>
         </div>
+        {unit.length ? (
+          <div className="text-theme font-semibold text-lg my-3">
+            <p>Total Unit leaders: {unit.length}</p>
+          </div>
+        ) : (
+          <></>
+        )}
         {/* District managers */}
-        <div className="my-3">
+        <div className="my-3 border-t border-gray-500">
           <p className="text-xl font-bold text-theme my-3">District Managers</p>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-theme ">
@@ -178,8 +190,15 @@ const Page = () => {
             </table>
           </div>
         </div>
+        {district.length ? (
+          <div className="text-theme font-semibold text-lg my-3">
+            <p>Total district managers: {district.length}</p>
+          </div>
+        ) : (
+          <></>
+        )}
         {/*  HQ leaders*/}
-        <div className="my-3">
+        <div className="my-3  border-t border-gray-500">
           <p className="text-xl font-bold text-theme my-3">HQ admins</p>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-theme ">
@@ -235,6 +254,20 @@ const Page = () => {
               </tbody>
             </table>
           </div>
+        </div>
+        {hq.length ? (
+          <div className="text-theme font-semibold text-lg my-3">
+            <p>Total HQ admins: {hq.length}</p>
+          </div>
+        ) : (
+          <></>
+        )}
+        <div className="text-gray-600 font-medium text-md flex justify-end flex-col pt-5 w-full  border-t border-gray-500 ">
+          <p>Printed by: {`${user.first_name} ${user.last_name}`}</p>
+          <p>
+            Date:{`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}
+          </p>
+          <p>Role: {user.role}</p>
         </div>
       </div>
     </div>

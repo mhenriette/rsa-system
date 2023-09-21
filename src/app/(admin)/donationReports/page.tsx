@@ -1,9 +1,10 @@
 "use client";
 import Loader from "@/components/ui/Loader";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import logo from "@/public/Logo.png";
 import ReactToPdf from "react-to-pdf";
+import { AuthContext } from "@/store/authContext";
 
 const DonationReport = () => {
   const [donator, setDonators] = useState([]);
@@ -31,9 +32,21 @@ const DonationReport = () => {
     (accumulator, el: any) => accumulator + el.amount,
     0
   );
+  const { user }: any = useContext(AuthContext);
+  const dates = new Date();
 
   return (
     <>
+      <ReactToPdf targetRef={ref} filename={`Members.pdf`} options={options}>
+        {({ toPdf }: { toPdf: any }) => (
+          <button
+            onClick={toPdf}
+            className="bg-purple-700 text-white font-bold rounded-md text-center px-10 py-4 hover:bg-purple-500 my-5"
+          >
+            Generate pdf
+          </button>
+        )}
+      </ReactToPdf>
       <div className=" p-5 w-[900px] h-auto" ref={ref}>
         <div className="flex justify-center flex-col gap-3 text-center items-center">
           <Image width={50} height={50} alt="logo" src={logo} />
@@ -115,17 +128,15 @@ const DonationReport = () => {
             </tbody>
           </table>
         </div>
+        <div className="text-gray-600 font-medium text-md flex justify-end flex-col mt-5 w-full">
+          <p>Printed by: {`${user.first_name} ${user.last_name}`}</p>
+          <p>
+            Date:
+            {`${dates.getDate()}/${dates.getMonth()}/${dates.getFullYear()}`}
+          </p>
+          <p>Role: {user.role}</p>
+        </div>
       </div>
-      <ReactToPdf targetRef={ref} filename={`Members.pdf`} options={options}>
-        {({ toPdf }: { toPdf: any }) => (
-          <button
-            onClick={toPdf}
-            className="bg-purple-700 text-white font-bold rounded-md text-center px-10 py-4 hover:bg-purple-500"
-          >
-            Generate pdf
-          </button>
-        )}
-      </ReactToPdf>
     </>
   );
 };
