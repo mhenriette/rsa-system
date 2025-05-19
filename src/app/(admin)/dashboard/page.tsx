@@ -29,11 +29,21 @@ const DashboardPage = () => {
   //   unit: "in",
   //   format: [7, 5],
   // };
+
+  console.log(applicants, "applicants")
   useEffect(() => {
-    fetch("api/applicants")
-      .then((response) => response.json())
-      .then((data) => setApplicants(data.data));
+    const fetchApplicants = async () => {
+      try {
+        const response = await fetch("/api/applicants");
+        const data = await response.json();
+        setApplicants(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };   
+    fetchApplicants();
   }, []);
+
   useEffect(() => {
     fetch("api/members")
       .then((response) => response.json())
@@ -68,7 +78,7 @@ const DashboardPage = () => {
         <h2 className="capitalize mb-4 font-semibold text-base">
           Pending applications
         </h2>
-        {applicants.length ? (
+        {applicants?.length ? (
           <Applicants applicants={applicants} />
         ) : (
           <Loader />
