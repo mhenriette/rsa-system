@@ -78,7 +78,8 @@ const DashboardPage = () => {
         <h2 className="capitalize mb-4 font-semibold text-base">
           Pending applications
         </h2>
-        {applicants?.length ? (
+        {applicants.length === 0 ? <h1 className="text-red-600 font-semibold text-2xl py-5">No applicants pending</h1>:
+        applicants?.length ? (
           <Applicants applicants={applicants} />
         ) : (
           <Loader />
@@ -106,7 +107,7 @@ const DashboardPage = () => {
               )}
             </ReactToPdf>
           </div>
-          {donations.length ? <Fundings fundings={donations} /> : <Loader />}
+          {donations?.length === 0 ? <h1 className="text-red-600 font-semibold text-2xl py-5">No Donations so far</h1>: donations.length ? <Fundings fundings={donations} /> : <Loader />}
         </div>
 
         <div className="flex justify-between items-center">
