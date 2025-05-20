@@ -9,12 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'hero-pattern': "url('/rsa_home.jpg')",
+        "donation-pattern": "url('/donate.jpg')"
       },
+      boxShadow:{
+        "activity-shadow": "0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+      },
+      colors:{
+        theme: "#38194d",
+        light:"#f2eafa"
+      }
+  
     },
   },
-  plugins: [],
+  plugins: [
+
+  ],
 }
 export default config
