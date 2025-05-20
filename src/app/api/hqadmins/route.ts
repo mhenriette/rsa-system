@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/db";
 import {NextResponse} from "next/server"
 export async function GET(req:Request,res:Response) {
-    const data = await prisma.hqAdmin.findMany(); 
+    const data = await prisma.hqAdmin.findMany({where: {}}); 
     try{
     return NextResponse.json({
         success: true, 

@@ -3,9 +3,9 @@ import { prisma } from "@/lib/db";
 import { NextResponse } from "next/server";
 export async function GET(req: Request, res: Response) {
   try {
-    console.log(prisma)
-    const data = await prisma.applicants.getMany()
-    // console.log(data, "data");
+    const data = await prisma.applicants.findMany({
+      where:  {}
+    });
     return NextResponse.json({
       success: true,
       data: data
