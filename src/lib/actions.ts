@@ -31,6 +31,7 @@ export const login = async (formData: any) => {
   const hqAdmin = await prisma.hqAdmin.findUnique({
     where: { username },
   });
+  console.log(hqAdmin, "adminnnnnnnnnnnnn==============")
   const districtManager = await prisma.districtManager.findUnique({
     where: { username },
   });
@@ -114,7 +115,7 @@ export const deleteMember = async (memberId: number) => {
 };
 
 export const getApplicants = async () => {
-  const items = await prisma.applicants.findMany();
+  const items = await prisma.applicants.findMany({where: {}});
   return [...items];
 };
 
@@ -124,7 +125,7 @@ export const getApplicants = async () => {
 // };
 
 export const getFundings = async () => {
-  const items = await prisma.donation.findMany();
+  const items = await prisma.donation.findMany({where: {}});
   return [...items];
 };
 
@@ -196,16 +197,16 @@ export const addNewActivity = async (formData: any) => {
 // };
 
 export const getActivities = async () => {
-  const item = await prisma.activity.findMany();
+  const item = await prisma.activity.findMany({where: {}});
   return [...item];
 };
 
 export const getUnits = async () => {
-  const items = await prisma.unit.findMany();
+  const items = await prisma.unit.findMany({where: {}});
   return [...items];
 };
 export const getDonations =async () => {
-  const donations = await prisma.donation.findMany();
+  const donations = await prisma.donation.findMany({where: {}});
   return [...donations]
 }
 

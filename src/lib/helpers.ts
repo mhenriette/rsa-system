@@ -62,6 +62,6 @@ export async function modifyMember(formData: any) {
 }
 
 export async function retrieveMembers() {
-  const item = await prisma.member.findMany();
+  const item = await prisma.member.findMany({where: {}});
   return [...item];
 }
