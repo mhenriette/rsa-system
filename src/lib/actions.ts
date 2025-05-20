@@ -23,15 +23,19 @@ export const updateMember = async (formData: any) => {
 
 
 export const login = async (formData: any) => {
-  const secret = new TextEncoder().encode("JHDKWJDEJDBWKJ");
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
   const username = formData.get("username");
   const password = formData.get("password");
+
+  if (!username || !password) {
+    console.error("Username or password not provided");
+    return null;
+  }
 
   // Query all three tables to find the user
   const hqAdmin = await prisma.hqAdmin.findUnique({
     where: { username },
   });
-  console.log(hqAdmin, "adminnnnnnnnnnnnn==============")
   const districtManager = await prisma.districtManager.findUnique({
     where: { username },
   });
